@@ -1,6 +1,6 @@
 from plover.steno import Stroke
 
-_FINGERSPELL_LETTERS = {
+_KEYMAP = {
     ("A-",): "a",
     ("P-", "W-"): "b",
     ("K-", "R-"): "c",
@@ -34,45 +34,82 @@ _FINGERSPELL_LETTERS = {
     ("#", "H-"): "4",
     ("#", "A-"): "5",
     ("#", "O-"): "0",
+    ("#", "K-"): "6",
+    ("#", "W-"): "7",
+    ("#", "R-"): "8",
+    ("#", "-E"): "9",
 
     # ("K-", "H-"): "tilde",
-    
+
     ("R-", "-R"): "return",
+    ("P-", "W-", "H-", "R-"): "backspace",
     ("P-", "W-", "H-"): "delete",
     ("S-", "P-"): "space",
     ("T-", "A-"): "tab",
+    ("T-", "P-", "-E"): "escape",
+    ("P-", "H-", "R-"): "plus",
+    ("K-", "W-", "H-", "R-"): "equals",
+    ("S-", "H-"): "minus",
+
+    ("#", "S-", "-R"): "f1",
+    ("#", "T-", "-R"): "f2",
+    ("#", "P-", "-R"): "f4",
+    ("#", "H-", "-R"): "f4",
+    ("#", "A-", "-R"): "f5",
+    ("#", "S-", "T-", "-R"): "f12",
+
+    ("*",): "",
 }
 
-_CONTROL_IDENTIFIER_SUBSTROKE = Stroke.from_keys(["-L", "-T", "-S"])
+# _CONTROL_IDENTIFIER_SUBSTROKE = Stroke.from_keys(["-L", "-G", "-T", "-S"])
 
-_SHIFT_SUBSTROKE = Stroke.from_keys(["-P"])
+# _NO_CTRL_SUBSTROKE = Stroke.from_keys(["-B"])
+# _MODIFIER_SUBSTROKE_CMDS = (
+#     (Stroke.from_keys(["-P"]), "shift_l"),
+#     (Stroke.from_keys(["-F"]), "alt_l"),
+#     (Stroke.from_keys(["-R"]), "meta_l"),
+# )
+
+_CONTROL_IDENTIFIER_SUBSTROKE = Stroke.from_keys(["-T", "-S", "-D", "-Z"])
+
+_NO_CTRL_SUBSTROKE = Stroke.from_keys(["-G"])
+_MODIFIER_SUBSTROKE_CMDS = (
+    (Stroke.from_keys(["-P"]), "shift_l"),
+    (Stroke.from_keys(["-L"]), "alt_l"),
+    (Stroke.from_keys(["-F"]), "super_l"),
+)
 
 #region Exports
 
 LONGEST_KEY = 1
 
-def lookup(key: tuple[Stroke]) -> str:
-    stroke = Stroke.from_steno(key[0])
+
+def lookup(key: tuple[str]) -> str:
+    stroke: Stroke = Stroke.from_steno(key[0])
 
     if _CONTROL_IDENTIFIER_SUBSTROKE not in stroke: raise KeyError
+    stroke -= _CONTROL_IDENTIFIER_SUBSTROKE
 
-    if _SHIFT_SUBSTROKE in stroke:
-        shift = True
-        stroke -= _SHIFT_SUBSTROKE
+
+    if _NO_CTRL_SUBSTROKE in stroke:
+        translation = "{}"
+        stroke -= _NO_CTRL_SUBSTROKE
     else:
-        shift = False
+        translation = "control_l({})"
+
+    for (substroke, command) in _MODIFIER_SUBSTROKE_CMDS:
+        if substroke in stroke:
+            translation = translation.format(f"{command}({{}})")
+            stroke -= substroke
+
+    # if translation == "{}": raise KeyError
 
 
-    fingerspell_sequence = (stroke - _CONTROL_IDENTIFIER_SUBSTROKE).keys()
-    if fingerspell_sequence not in _FINGERSPELL_LETTERS: raise KeyError
+    fingerspell_sequence = stroke.keys()
+    if fingerspell_sequence not in _KEYMAP: raise KeyError
+    target_key = _KEYMAP[fingerspell_sequence]
 
-    letter = _FINGERSPELL_LETTERS[fingerspell_sequence]
+    return f"{{#{translation.format(target_key)}}}"
 
-
-    if shift:
-        return f"{{#Control_L(Shift_L({letter}))}}"
-    else:
-        return f"{{#Control_L({letter})}}"
-        
 
 #endregion
