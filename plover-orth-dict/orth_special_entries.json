@@ -1,0 +1,18 @@
+{
+"KWRAEUGS": "{^iation}",
+"AEUGS": "{^ation}",
+"-PLT": "{^ment}",
+"-TSDZ": "{#}{plover:end_solo_dict}",
+".": "{#}{plover:end_solo_dict}",
+"+": "{#}{plover:end_solo_dict}",
+"S-P": "{^ ^}",
+"KPA": "{}{-|}",
+"KPA*": "{^}{-|}",
+"SKW-T": "{^}'{^}",
+"TP-PL": "{.}",
+"KW-BG": "{,}",
+"TP-BG": "{!}",
+"KW-PL": "{?}",
+"H-PB": "{^}-{^}",
+"H-F": "{?}"
+}
