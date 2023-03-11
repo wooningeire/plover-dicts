@@ -11,6 +11,7 @@ _KEYMAP = {
     ("H-",): "h",
     ("-E", "-U"): "i",
     ("S-", "K-", "W-", "R-"): "j",
+    ("K-",): "k",
     ("H-", "R-"): "l",
     ("P-", "H-"): "m",
     ("T-", "P-", "H-"): "n",
@@ -28,16 +29,16 @@ _KEYMAP = {
     ("S-", "T-", "K-"): "z",
     ("S-", "T-", "K-", "P-", "W-"): "z",
 
-    ("#", "S-"): "1",
-    ("#", "T-"): "2",
-    ("#", "P-"): "3",
-    ("#", "H-"): "4",
-    ("#", "A-"): "5",
-    ("#", "O-"): "0",
-    ("#", "K-"): "6",
-    ("#", "W-"): "7",
-    ("#", "R-"): "8",
-    ("#", "-E"): "9",
+    ("#", "R-"): "1",
+    ("#", "W-"): "2",
+    ("#", "K-"): "3",
+    ("#", "H-", "R-"): "4",
+    ("#", "P-", "W-"): "5",
+    ("#",): "0",
+    ("#", "T-", "K-"): "6",
+    ("#", "H-"): "7",
+    ("#", "P-"): "8",
+    ("#", "T-"): "9",
 
     # ("K-", "H-"): "tilde",
 
@@ -51,12 +52,17 @@ _KEYMAP = {
     ("K-", "W-", "H-", "R-"): "equals",
     ("S-", "H-"): "minus",
 
-    ("#", "S-", "-R"): "f1",
-    ("#", "T-", "-R"): "f2",
-    ("#", "P-", "-R"): "f4",
-    ("#", "H-", "-R"): "f4",
-    ("#", "A-", "-R"): "f5",
-    ("#", "S-", "T-", "-R"): "f12",
+    ("#", "R-", "-R"): "f1",
+    ("#", "W-", "-R"): "f2",
+    ("#", "K-", "-R"): "f3",
+    ("#", "H-", "R-", "-R"): "f4",
+    ("#", "P-", "W-", "-R"): "f5",
+    ("#", "W-", "A-", "-R"): "f12",
+
+    ("K-", "-E", "-U"): "left",
+    ("W-", "-E", "-U"): "down",
+    ("R-", "-E", "-U"): "right",
+    ("P-", "-E", "-U"): "up",
 
     ("*",): "",
 }
@@ -70,14 +76,17 @@ _KEYMAP = {
 #     (Stroke.from_keys(["-R"]), "meta_l"),
 # )
 
-_CONTROL_IDENTIFIER_SUBSTROKE = Stroke.from_keys(["-T", "-S", "-D", "-Z"])
+_CONTROL_IDENTIFIER_SUBSTROKE = Stroke.from_steno("-TSDZ")
 
-_NO_CTRL_SUBSTROKE = Stroke.from_keys(["-G"])
+# _NO_CTRL_SUBSTROKE = Stroke.from_keys(["-G"])
 _MODIFIER_SUBSTROKE_CMDS = (
-    (Stroke.from_keys(["-P"]), "shift_l"),
-    (Stroke.from_keys(["-L"]), "alt_l"),
-    (Stroke.from_keys(["-F"]), "super_l"),
+    (Stroke.from_steno("-B"), "control_l"),
+    (Stroke.from_steno("-P"), "shift_l"),
+    (Stroke.from_steno("-L"), "alt_l"),
+    (Stroke.from_steno("-G"), "super_l"),
 )
+
+_NO_SPACE_SUBSTROKE = Stroke.from_steno("-F")
 
 #region Exports
 
@@ -90,26 +99,31 @@ def lookup(key: tuple[str]) -> str:
     if _CONTROL_IDENTIFIER_SUBSTROKE not in stroke: raise KeyError
     stroke -= _CONTROL_IDENTIFIER_SUBSTROKE
 
-
-    if _NO_CTRL_SUBSTROKE in stroke:
-        translation = "{}"
-        stroke -= _NO_CTRL_SUBSTROKE
-    else:
-        translation = "control_l({})"
+    translation = "{}"
 
     for (substroke, command) in _MODIFIER_SUBSTROKE_CMDS:
         if substroke in stroke:
             translation = translation.format(f"{command}({{}})")
             stroke -= substroke
 
-    # if translation == "{}": raise KeyError
+    if translation == "{}":
+        translation = "control_l({})"
+
+    no_space = False
+    if _NO_SPACE_SUBSTROKE in stroke:
+        no_space = True
+        stroke -= _NO_SPACE_SUBSTROKE
 
 
     fingerspell_sequence = stroke.keys()
     if fingerspell_sequence not in _KEYMAP: raise KeyError
     target_key = _KEYMAP[fingerspell_sequence]
 
-    return f"{{#{translation.format(target_key)}}}"
+
+    translation = f"{{#{translation.format(target_key)}}}"
+    if no_space:
+        translation += "{^}"
+    return translation
 
 
 #endregion
