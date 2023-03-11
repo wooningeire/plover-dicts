@@ -1,0 +1,18 @@
+{
+"#": "{*+}",
+"#*": "{*}",
+"TK-FPS": "{*!}",
+"KPA*PB": "{^}{>}",
+"KPA*S": "{MODE:CAPS}",
+"KPAPB": "{>}",
+"KPAPBD": "{*>}",
+"KA*PS": "{MODE:CAPS}",
+"PHROFBGS": "{PLOVER:FOCUS}",
+"PHROFG": "{PLOVER:CONFIGURE}",
+"PHROBGT": "{PLOVER:QUIT}",
+"PHROGS": "{PLOVER:SUGGESTIONS}",
+"PHR*UP": "{PLOVER:LOOKUP}",
+"HRO*ER": "{>}",
+"HRO*ERD": "{*>}",
+"AFPS": "{*?}"
+}

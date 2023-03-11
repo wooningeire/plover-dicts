@@ -1,0 +1,9 @@
+{
+"S-TD": "std",
+"TPHU/TAO*EUP": "newtype",
+"TWHRAOUS/PA*PBLG": "\\usepackage[{^}",
+"KAORG": "cargo",
+"PH*UT": "mut",
+"PREUPBLT": "println!({^}",
+"EUFRPL": "impl"
+}
