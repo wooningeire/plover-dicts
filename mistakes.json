@@ -1,5 +1,7 @@
 {
 "+R-R": "{#return}{^}",
+"&R*R": "{#return}{^}",
+"&R-R": "{#return}{^}",
 "SKPW-BG": "{,}and",
 "SPWR-RPBT": "internet",
 "SPW-RPBT": "internet",
@@ -7,7 +9,10 @@
 "SAEURBL": "variable",
 "SES": "says",
 "T/-S": "it is",
+"TKP-R": "for",
+"TKP-RT": "for the",
 "TKP-PL": "{.}",
+"TKW-BG": "{,}",
 "TPUPBGS/A*LT": "functionality",
 "TP-PLG": "{.}",
 "TH/-S": "this is",
