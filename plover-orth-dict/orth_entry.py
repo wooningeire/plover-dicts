@@ -20,6 +20,15 @@ else:
 
 LONGEST_KEY = 1
 
+_ENABLED_DICTS = [
+	r"~\dev\other\plover_orth_dict\orth_fingerspelling.py",
+	r"user-dicts\custom-commands.json",
+	# r"~\dev\other\plover_control_seq_dict\fingerspelling_control_seqs.py",
+	r"user-dicts\plover_recommended_dictionary_commands.json",
+	r"commands.json",
+	r"user-dicts\downloads\emily-symbols.py",
+]
+
 def lookup(strokes_steno: tuple[str]) -> str:
 	stroke = Stroke.from_steno(strokes_steno[0])
 
@@ -30,7 +39,7 @@ def lookup(strokes_steno: tuple[str]) -> str:
 	# 	raise KeyError
 
 	if ((identifier := Stroke.from_steno(".")) not in stroke
-			and (identifier := Stroke.from_steno("+")) not in stroke):
+			and (identifier := Stroke.from_steno("&")) not in stroke):
 		raise KeyError
 
 
@@ -52,19 +61,20 @@ def lookup(strokes_steno: tuple[str]) -> str:
 	stroke -= identifier
 
 	# Skip entering the solo dict mode to avoid the brief lag
-	if Stroke.from_steno("+") in stroke:
+	if Stroke.from_steno("&") in stroke:
 		if Stroke.from_steno("HR") not in stroke: #temp, hopefully, for until a better layout is implemented
 			enter = False
 
-		stroke -= Stroke.from_steno("+")
+		stroke -= Stroke.from_steno("&")
 
 	out = _lookup((stroke.rtfcre,))
 	
 	# if capitalize:
 		# return "{-|}" + out
 
+
 	if enter:
-		out = (r"{plover:solo_dict:+~\dev\other\plover_orth_dict\orth_fingerspelling.py,+user-dicts\custom-commands.json,+~\dev\other\plover_control_seq_dict\fingerspelling_control_seqs.py,+user-dicts\plover_recommended_dictionary_commands.json,+commands.json,+user-dicts\downloads\emily-symbols.py}"
+		out = (f"{{plover:solo_dict:{','.join(f'+{dict_url}' for dict_url in _ENABLED_DICTS)}}}"
 				+ out)
 	
 	return out

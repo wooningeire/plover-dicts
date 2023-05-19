@@ -6,14 +6,16 @@ from collections import defaultdict
 _WORD_BOUNDARY = " "
 _CAPS = "{-|}"
 _EXIT = "<exit>"
-_CONNECT = "^"
+_CONNECT_BEFORE = "&"
+_CONNECT_AFTER = "^"
 
 _CHORDS = {
     # Extended stenotype control chords
-    "^": _WORD_BOUNDARY,
+    "^": _CONNECT_BEFORE,
+    "_": _WORD_BOUNDARY,
     "#": _CAPS,
     ".": _EXIT,
-    "+": _EXIT,
+    "&": _EXIT,
     
     # "#": _WORD_BOUNDARY,  # for non-extended stenotype
 
@@ -46,8 +48,6 @@ _CHORDS = {
     "KW": "q",
     "KWHR": "chr",
     "KWH": "qu",
-    "KHR": "cl",
-    "KH": "ch",
     "KPW": "k",
     "K": "c",
     "PW": "b",
@@ -60,7 +60,7 @@ _CHORDS = {
     "H": "h",
     "R": "r",
 
-    "AOEU": "y",
+    "AOEU": "eu",
     "AOE": "ee",
     "AOU": "ue",
     "AO": "oo",
@@ -84,15 +84,33 @@ _CHORDS = {
     "O*E": "eo",
     "O*U": "ow",
     "O*": "io",
-    "*EU": "eu",
+    "*EU": "y",
     "*E": "ie",
     "*U": "iu",
 
+    # "_AO": "ao",
+    # "_A": "ua",
+    # "_O": "uo",
+    # "_E": "ue",
+    # "_U": "uu",
+    # "_EU": "ui",
+    # "_AOE": "ii",
+
+    # "_A*": "ya",
+    # "_O*": "yo",
+    # "_*E": "ye",
+    # "_*U": "yu",
+    # "_*EU": "yi",
+    # "_AO*E": "ey",
+    # "_AO*EU": "eye",
+
     "-FRPBLG": "nch",
     "-FRPB": "rch",
-    "-FRPL": "rph",
-    "-FPL": "ph",
-    "-FSZ": "ff",
+    "-FRPLG": "rph",
+    "-FPLG": "ph",
+    "-FPL": "sm",
+    "-FBG": "sk",
+    "-FBLG": "sc",
     "-FRBL": "rv",
     "-FRB": "rf",
     "-FP": "ch",
@@ -100,7 +118,8 @@ _CHORDS = {
     "-FPBG": "nk",
     "-FLG": "lk",
     "-FPB": "sh",
-    "-FPBS": "cious",
+    "-FBLGT": "ction",
+    # "-FPBS": "cious",
     "-FLT": "st",
     "-FB": "v",
     "-FG": "gh",
@@ -108,30 +127,33 @@ _CHORDS = {
     "-FRP": "mp",
     "-F": "f",
     "-R": "r",
-    "-PBSZ": "nn",
     "-PBLGT": "j",
     "-PBLG": "dg",
     "-PB": "n",
     "-PL": "m",
     "-P": "p",
     "-BLG": "ck",
+    "-BLGT": "tion",
     "-BGS": "x",
     # "-BGD": "by",
     "-BGZ": "ks",
     "-BG": "k",
     "-B": "b",
-    "-LSZ": "ll",
     "-L": "l",
-    "-PLGT": "th",
     "-G": "g",
     "-T": "t",
-    "-SZ": "ss",
     "-S": "s",
     "-DZ": "ds",  # for extended stenotype
     # "-TDZ": "{-|}t",  # for non-extended stenotype
     # "-DZ": "{-|}",  # for non-extended stenotype
     "-D": "d",
     "-Z": "z",
+
+    "-FSZ": "ff",
+    "-FRSZ": "hh",
+    "-PBSZ": "nn",
+    "-LSZ": "ll",
+    "-SZ": "ss",
     
 
     # EXPERIMENTATION ZONE
@@ -145,11 +167,13 @@ _CHORDS = {
 
     # h
     "-FR": "h",
-    "-FRPBL": "hr",
-    "-FRPBG": "hk",
+    # "-FRPBL": "hr",
+    "-FRPBG": "hr",
+    # "-FRPBG": "hk",
+    "-FRBG": "hk",
 
     # w
-    "-FBG": "w",
+    "-FBL": "w",
     # "-FPG": "wn",
     # "-RPG": "wr",
     # "-PLG": "wl",
@@ -157,47 +181,63 @@ _CHORDS = {
 
     # q
     "-FPBLG": "q",
+
+    # th
+    # "-PLGT": "th",
+    "-GT": "th",
     
     
     # ENDING VOWELS
 
     "-TD": "e",
     "-TSDZ": "y",
-    # "-GD": "y",
-    "-GD": "a",
-    "-GDZ": "i",
-    "-TDZ": "u",  # shift
-    "-SD": "a",  # shift
-    "-SDZ": "o",  # shift
 
     "-FRT": "te",
     "-FRS": "se",
     "-FRD": "de",
     "-FRZ": "ze",
-    "-FRTS": "tse",
-    "-FRDZ": "dse",
+    "-FRTS": "tes",
+    "-FRDZ": "des",
     "-FRLS": "lse",
+    "-FRGT": "the",
+    "-FPBT": "ty",
+    "-FPBS": "sy",
+    "-FPBD": "dy",
+    "-FPBZ": "zy",
 
+    "-FRPBT": "nte",
+    "-FRPBS": "nse",
+
+    "-GTD": "ge",
     "-FLTD": "fle",
+    "-FRPLTD": "mple",
+    "-FRPLTSDZ": "mply",
 
     "-PBLGTD": "dge",
     "-PBLGTSDZ": "dgy",
 
-    "-FPLTD": "phe",
-    "-FPLTSDZ": "phy",
-    "-FRPLTD": "rphe",
-    "-FRPLTSDZ": "rphy",
+    # "-PLGTD": "the",
+    # "-PLGTSDZ": "thy",
 
-    "-PLGTD": "the",
-    "-PLGTSDZ": "thy",
+    # experimentation zone 
+
+    # "-GD": "y",
+    "-GSZ": "a",
+    "-GD": "i",
+    "-GDZ": "o",
+    "-GZ": "u",
+
+    "-TDZ": "u",  # shift
+    "-SD": "a",  # shift
+    "-SDZ": "o",  # shift
 
 
     # PUNCTUATION
 
     "-FPLT": ".",
     "-FRPLT": "'",
-    "-FPBLT": "-" + _CONNECT,
-    "-FPBLTD": "—" + _CONNECT,
+    "-FPBLT": "-" + _CONNECT_AFTER,
+    "-FPBLTD": "—" + _CONNECT_AFTER,
 }
 
 _CHORD_RESULT = "chord"
@@ -215,9 +255,10 @@ for chord, entry in _CHORDS.items():
 _UNDO_STROKE = "*"
 
 _special_entries = {
-    "-TSDZ": "{#}{plover:end_solo_dict}",
+    # "-TSDZ": "{#}{plover:end_solo_dict}",
     ".": "{#}{plover:end_solo_dict}",
-    "+": "{#}{plover:end_solo_dict}",
+    "&": "{#}{plover:end_solo_dict}",
+    "_": "{^ ^}",
     "S-P": "{^ ^}",
     "KPA": "{}{-|}",
     "KPA*": "{^}{-|}",
@@ -275,13 +316,16 @@ def lookup(strokes_steno: tuple[str]) -> str:
         if longest_chord_found.startswith(_CAPS):
             capitalize = True
             longest_chord_found = longest_chord_found[len(_CAPS):]
+        if longest_chord_found.startswith(_CONNECT_BEFORE):
+            capitalize = True
+            longest_chord_found = longest_chord_found[len(_CONNECT_BEFORE):]
 
         if longest_chord_found.endswith(_EXIT):
             exit = True
             longest_chord_found = longest_chord_found[:-len(_EXIT)]
-        if longest_chord_found.endswith(_CONNECT):
+        if longest_chord_found.endswith(_CONNECT_AFTER):
             connect = True
-            longest_chord_found = longest_chord_found[:-len(_CONNECT)]
+            longest_chord_found = longest_chord_found[:-len(_CONNECT_AFTER)]
 
         out += longest_chord_found
 
