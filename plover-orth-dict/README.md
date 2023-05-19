@@ -43,16 +43,16 @@ No asterisk | Asterisk
 ` `: *(none)* | `*`: *(undecided)*
 `A`: a | `A*`: ia
 `O`: o | `O*`: io
-`AO`: oo | `AO*`: oa
 `E`: e | `*E`: ie
-`AE`: ea | `A*E`: ae
-`OE`: oe | `O*E`: eo
-`AOE`: ee | `AO*E`: ei
 `U`: u | `*U`: iu
+`AO`: oo | `AO*`: oa
+`AE`: ea | `A*E`: ae
 `AU`: au | `A*U`: aw
+`OE`: oe | `O*E`: eo
 `OU`: ou | `O*U`: ow
-`AOU`: ue | `AO*U`: iou
 `EU`: i | `*EU`: y
+`AOE`: ee | `AO*E`: ei
+`AOU`: ue | `AO*U`: iou
 `AEU`: ai | `A*EU`: ay
 `OEU`: oi | `O*EU`: oy
 `AOEU`: eu | `AO*EU`: ew
@@ -101,6 +101,7 @@ Other various chords have been introduced:
 * `-FPLG`: ph
     * `-FRPLG`: rph
 * `-FBLG`: sc
+* `-FPG`: nc
 * `-FLG`: lk
 * `-FG`: gh
     * `-FRG`: rgh
@@ -126,7 +127,7 @@ The remaining ending vowels are assigned to chords that contain `-G`. From there
 ##### Inverted ending vowels
 Some chords in columns 1/2 can be used to add vowels after chords that use columns 4/5.
 * `-FR`: e (normally h)
-* `-FPB`: y (nomrally sh)
+* `-FPB`: y (normally sh)
 
 These are simply added to the stroke, e.g.,
 * `-FRT`: te
