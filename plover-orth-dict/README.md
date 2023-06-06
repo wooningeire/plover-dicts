@@ -10,8 +10,23 @@
 * Replace nonorthographic theories
 
 ## Mechanics
+Stroke translations are constructed by checking each key in a stroke, in steno order. Chords are identified progressively as keys are checked.
+* Any keys that are checked and which have not yet been translated into a chord are tracked. For each key that is checked, if we can constrct a larger chord out of that key and all the other keys that have not yet been translated, then the key is simply also tracked.
+* Once a key is encountered that cannot continue the chord (or we reach the end of the stroke), the chord is appended to the translation.
 
-### Left bank letters
+This means that chords cannot be "stacked" nor overlap each other.
+
+### Example outlines
+* sedenion `SEFRD/TPHO*PB`
+* apeirogon `A/PAO*E/RO/TKPWOPB`
+* Kubernetes `#KPWU/PWER/TPHEFRTS`
+* dopaminergic `TKO/PAPLGD/TPHER/TKPWEUPG`
+* dactylopatagium `TKAPG/T*EULGDZ/PA/TA/TKPW*UPL`
+* rhombicosidodecahedron `TPWROPL/PWEU/KOS/EU/TKOFRD/KA/HE/TKROPB`
+
+### Left bank
+
+#### Left bank letters
 Roughly a superset of fingerspelling. All vowels and left-hand consonants can be individually chorded the same as with fingerspelling, with two exceptions:
 * `K`: c
 * `KPW`: k
@@ -26,13 +41,17 @@ By default, `_HR` will translate to `_l`, so `SHR`, `THR`, `KHR` will produce `s
 
 #### Additional left bank chords
 Other various chords have been introduced:
+* `STPHR`: ' *(apostrophe)*
 * `SKP`: ss
+* `SKPW`: sk
 * `SWR`: sr
-* `KWH`: qu
 * `TKPH`: kn
 * `TPWH`: ph
     * `TPW`: phl
 * `TPWR`: rh
+* `TPHR`: fl
+* `KWH`: qu
+* `PHR`: pl
 * `WHR`: hr
 
 ### Vowels
@@ -57,7 +76,9 @@ No asterisk | Asterisk
 `OEU`: oi | `O*EU`: oy
 `AOEU`: eu | `AO*EU`: ew
 
-### Right bank letters
+### Right bank
+
+#### Right bank letters
 All single-key chords represent their key values. Other chords include:
 * `-PG`: c
 * `-FR`: h
@@ -71,8 +92,8 @@ All single-key chords represent their key values. Other chords include:
 * `-BGS`: x (`-BGZ`: ks)
 * `-TSDZ`: y
 
-#### Right bank chords
-These chords can be individually chorded the same as in Plover theory:
+#### Right bank Plover clusters
+These clusters can be individually chorded the same as in Plover theory:
 * `-FRP`: mp
 * `-FRPB`: rch
 * `-FRPBLG`: nch
@@ -80,7 +101,7 @@ These chords can be individually chorded the same as in Plover theory:
 * `-FPL`: sm
 * `-FBG`: sk
 
-These chords have been changed:
+These clusters have been changed:
 * `-FPB`: sh (`-RB`: rb)
 * `-FPBG`: nk
 
@@ -94,6 +115,9 @@ These chords have been changed:
 
 #### Additional right bank chords
 Other various chords have been introduced:
+* `-FRPBG`: hr
+* `-FRPBD`: hn
+* `-FRPBDZ`: hns
 * `-FRB`: rf
 * `-FRBL`: rv
 * `-FPBL`: tch
@@ -132,9 +156,15 @@ Some chords in columns 1/2 can be used to add vowels after chords that use colum
 These are simply added to the stroke, e.g.,
 * `-FRT`: te
 * `-FRS`: se
+* `-FRD`: de
+* `-FRZ`: ze
+* `-FRLS`: lse
 * `-FRGT`: the
+* `-FRPBT`: nte
+* `-FRPBS`: nse
 * `-FPBT`: ty
 * `-FPBS`: sy
+* `-FPBGT`: thy
 * etc.
 #### Ending punctuation
 Punctation chords all contain `-FPLT`. The punctuation characters are included in the glue and do not affect spacing or capitalization.

@@ -68,6 +68,8 @@ _CHORDS = {
     "TPHR": "fl",
     "PHR": "pl",
 
+    "STPHR": "'", # mirrors right-hand apostrophe
+
     # VOWELS
 
     "A": "a",
@@ -135,8 +137,8 @@ _CHORDS = {
 
     "-FRP": "mp",
     "-FRPB": "rch",
-    "-FRPLG": "rph",
     "-FRPBLG": "nch",
+    "-FRPLG": "rph",
     "-FRB": "rf",
     "-FRBL": "rv",
     "-FRG": "rgh",
@@ -180,6 +182,8 @@ _CHORDS = {
     # h
     "-FR": "h",
     "-FRPBG": "hr",
+    "-FRPBD": "hn",
+    "-FRPBDZ": "hns",
     "-FRBG": "hk",
     # "-FRPBL": "hr",
     # "-FRPBG": "hk",
@@ -216,9 +220,13 @@ _CHORDS = {
     "-FPBS": "sy",
     "-FPBD": "dy",
     "-FPBZ": "zy",
+    "-FPBLS": "lsy",
+    "-FPBGT": "thy",
 
     "-FRPBT": "nte",
     "-FRPBS": "nse",
+    # "-FPBT": "nty",
+    # "-FPBS": "nsy",
 
     "-FRPLTD": "mple",
     "-FLTD": "fle",
