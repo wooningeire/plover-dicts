@@ -21,60 +21,35 @@ else:
 LONGEST_KEY = 1
 
 _ENABLED_DICTS = [
-	r"~\dev\other\plover_orth_dict\orth_fingerspelling.py",
-	r"user-dicts\custom-commands.json",
-	# r"~\dev\other\plover_control_seq_dict\fingerspelling_control_seqs.py",
-	r"user-dicts\plover_recommended_dictionary_commands.json",
+	r"orth_fingerspelling.py",
 	r"commands.json",
-	r"user-dicts\downloads\emily-symbols.py",
 ]
+
+_solo_dict_command = f"{{plover:solo_dict:{','.join(f'+{dict_url}' for dict_url in _ENABLED_DICTS)}}}"
+
+_IDENTIFIER_SUBSTROKE = Stroke.from_steno("&")
 
 def lookup(strokes_steno: tuple[str]) -> str:
 	stroke = Stroke.from_steno(strokes_steno[0])
 
 	enter = True
 
-
-	# if (identifier := Stroke.from_steno("#-S")) not in stroke:
-	# 	raise KeyError
-
-	if ((identifier := Stroke.from_steno(".")) not in stroke
-			and (identifier := Stroke.from_steno("&")) not in stroke):
+	if _IDENTIFIER_SUBSTROKE not in stroke:
 		raise KeyError
+	
 
+	stroke -= _IDENTIFIER_SUBSTROKE
 
-	# if (suffix := Stroke.from_steno("-TSZ")) in stroke:
-	# 	if Stroke.from_steno("-D") in stroke:
-	# 		raise KeyError
+	# # If both entry keys are present, skip entering the solo dict mode to avoid the brief lag
+	# if Stroke.from_steno("&") in stroke:
+	# 	enter = False
 
-	# 	capitalize = False
-
-	# elif (suffix := Stroke.from_steno("-TDZ")) in stroke:
-	# 	if Stroke.from_steno("-S") in stroke:
-	# 		raise KeyError
-
-	# 	capitalize = True
-
-	# else:
-	# 	raise KeyError
-
-	stroke -= identifier
-
-	# Skip entering the solo dict mode to avoid the brief lag
-	if Stroke.from_steno("&") in stroke:
-		if Stroke.from_steno("HR") not in stroke: #temp, hopefully, for until a better layout is implemented
-			enter = False
-
-		stroke -= Stroke.from_steno("&")
+	# 	stroke -= Stroke.from_steno("&")
 
 	out = _lookup((stroke.rtfcre,))
-	
-	# if capitalize:
-		# return "{-|}" + out
 
 
 	if enter:
-		out = (f"{{plover:solo_dict:{','.join(f'+{dict_url}' for dict_url in _ENABLED_DICTS)}}}"
-				+ out)
+		out = _solo_dict_command + out
 	
 	return out

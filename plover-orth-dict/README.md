@@ -10,19 +10,26 @@
 * Replace nonorthographic theories
 
 ## Mechanics
-Stroke translations are constructed by checking each key in a stroke, in steno order. Chords are identified progressively as keys are checked.
-* Any keys that are checked and which have not yet been translated into a chord are tracked. For each key that is checked, if we can constrct a larger chord out of that key and all the other keys that have not yet been translated, then the key is simply also tracked.
-* Once a key is encountered that cannot continue the chord (or we reach the end of the stroke), the chord is appended to the translation.
+`orth_fingerspelling.py` is the main orthographic dictionary. It should be disabled initially and can be thought of as a "mode" which you enter into or exit from.
 
-This means that chords cannot be "stacked" nor overlap each other.
+*(`orth_entry.py` is an extra, experimental dictionary that allows you to enter the orthographic dictionary by folding a certain chord into a stroke. It may be clunky to use without extra keys, and it is not required in order to use the main orthographic dictionary.)*
+
+See setup instructions in `SETUP.md`.
 
 ### Example outlines
 * sedenion `SEFRD/TPHO*PB`
-* apeirogon `A/PAO*E/RO/TKPWOPB`
-* Kubernetes `#KPWU/PWER/TPHEFRTS`
+* apeirogon `A/PAO*ERGDZ/TKPWOPB`
+* Sierpinski `#S*ER/PEUPB/SKPWEU` <!-- * Kubernetes `#KPWU/PWER/TPHEFRTS` -->
 * dopaminergic `TKO/PAPLGD/TPHER/TKPWEUPG`
 * dactylopatagium `TKAPG/T*EULGDZ/PA/TA/TKPW*UPL`
-* rhombicosidodecahedron `TPWROPL/PWEU/KOS/EU/TKOFRD/KA/HE/TKROPB`
+* rhombicosidodecahedron `TPWROPL/PWEU/KOS/EU/TKOFRD/KAFRTD/TKROPB`
+* Pafnuty Lvovich Chebyshev `#PAF/TPHUFPBT/S-P/#HR/SRO/SREUFP/S-P/#KHEBTSDZ/SHEFB`
+    * (extended stenotype: `#PAF/TPHUFPBT/#^HR/SRO/SREUFP/#^KHEBTSDZ/SHEFB`)
+
+### Entry and exit
+You may need to manually define an entry to enter the orthographic dictionary using the `{plover:solo_dict}` command from the [`plover-dict-commands`](https://pypi.org/project/plover-dict-commands/) plugin; see `SETUP.md`.
+
+Exit is handled by a special entry which translates to `{plover:end_solo_dict}`. By default, the stroke `-TSDZ` is mapped to this.
 
 ### Left bank
 
@@ -34,7 +41,7 @@ Roughly a superset of fingerspelling. All vowels and left-hand consonants can be
 The `*` key does not need to be pressed for each stroke.
 
 #### `WHR-` as `hr`
-By default, `_HR` will translate to `_l`, so `SHR`, `THR`, `KHR` will produce `sl`, `tl`, `cl`. Use `WHR` to split `l` into `hr`; e.g. `throttle` could be stroked `TWHROT/THRE`.
+By default, `...HR-` will translate to `...l`, so `SHR`, `THR`, `KHR` will produce `sl`, `tl`, `cl`. Use `WHR` to split `l` into `hr`; e.g. `throttle` could be stroked `TWHROT/THRE`.
 * `SWHR`: shr
 * `TWHR`: thr
 * `KWHR`: chr
@@ -59,7 +66,7 @@ When vowels are in a stroke, `*` is used as an additional vowel key.
 
 No asterisk | Asterisk
 -|-
-` `: *(none)* | `*`: *(undecided)*
+` `: *(none)* | `*`: *[undecided]*
 `A`: a | `A*`: ia
 `O`: o | `O*`: io
 `E`: e | `*E`: ie
@@ -132,13 +139,13 @@ Other various chords have been introduced:
 * `-FLT`: st
 * `-PBLG`: dg
 * `-BLG`: ck
-* `-BLGT`: tion
-    * `-FBLGT`: ction
+* `-BLGT`: tion (`-GS`: gs)
+    * `-FBLGT`: ction (`-BGS`: x)
 * `-BGZ`: ks
 * `-DZ`: ds
 
 #### Ending vowels
-The two more common ending vowels are given chords which only use columns 4/5. 
+`e` and `y` are given chords which only use columns 4/5. 
 * `-TD`: e
 * `-TSDZ`: y
 
@@ -175,13 +182,46 @@ Punctation chords all contain `-FPLT`. The punctuation characters are included i
 
 ### Stroke modifiers
 The remaining symbol keys are used to add modifiers onto the stroke.
+
+For the standard English stenotype system:
 * `#`: *(capitalize)*
 
-With an extended stenotype system, additional modifiers can be folded into each stroke.
-* `^`: *(attach before; undecided)*
-* `+`: *(undecided)*
-* `_`: *(space)*
-* `&`: *(enter/exit)*
+For an [extended stenotype system](https://pypi.org/project/plover-stenotype-extended/) that provides `^`:
+* `#`: *(capitalize)*
+* `^`: *(space before)*
+* `+`: *[undecided]*
 
-### Minutiae
+### Misc details
+
+#### Minutiae
 * Unlike fingerspelling, letters will not be forced to lowercase (e.g., `KPA: "{-|}"` will affect the casing).
+
+#### Chord identification
+Stroke translations are constructed by checking each key in a stroke, in steno order. Chords are identified progressively as keys are checked.
+* Any keys that are checked and which have not yet been translated into a chord are tracked. For each key that is checked, if we can constrct a larger chord out of that key and all the other keys that have not yet been translated, then the key is also tracked.
+* Once a key is encountered that cannot continue the chord (or we reach the end of the stroke), the chord is appended to the translation.
+
+This means that chords cannot be "stacked" nor overlap each other. This method also causes some strokes to not be translated how one might expect them to; several chords are included whose purpose are to resolve conflicts if the original result is uncommon or inconsistent (like `-FLTD`: "`fle`" vs "`std`"). (This also means some right-bank consonant clusters cannot be used with certain ending vowel chords for now, which may be changed later.)
+
+Chord-by-chord translations are placed inside a glue; i.e., `PA*PBGDZ` maps to "`{&piano}`" instead of just "`piano`".
+
+Chords and their translations are defined in `orth_fingerspelling.py` under the variable `_CHORDS`.
+
+#### Special entries
+Special entries function like normal dictionary entries and are not split up chord-by-chord like other strokes. They are defined in `orth_fingerspelling.py` under the variable `_SPECIAL_ENTRIES`.
+
+By default, these entries are:
+
+    "S-P": "{^ ^}",
+    "KPA": "{}{-|}",
+    "KPA*": "{^}{-|}",
+    "SKW-T": "{^}'{^}",
+    "TP-PL": "{.}",
+    "KW-BG": "{,}",
+    "TP-BG": "{!}",
+    "KW-PL": "{?}",
+    "H-F": "{?}",
+    "H-PB": "{^}-{^}",
+    "-TSDZ": "{#}{plover:end_solo_dict}",
+
+Additional special entries can be added by editing `orth_fingerspelling.py`. Alternatively, you can also specify additional dictionaries to the command you use to enter the orthographic dictionary.

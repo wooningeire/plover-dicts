@@ -1,8 +1,15 @@
 from plover.steno import Stroke
+from plover.system import KEYS
+# TODO glitchy behavior when switching systems, and system does not update properly. Due to script or something else?
 
 from collections import defaultdict
 
-# TODO temp, not ideal
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    KEYS: tuple[str] = ()
+
+
+# TODO temp arbitrary strings, not ideal
 _WORD_BOUNDARY = " "
 _CAPS = "{-|}"
 _EXIT = "<exit>"
@@ -12,17 +19,7 @@ _CONNECT_AFTER = "^"
 _CHORDS = {
     # MODIFIERS
 
-    # Extended stenotype control chords
-    "^": _CONNECT_BEFORE,
-    "_": _WORD_BOUNDARY,
     "#": _CAPS,
-    ".": _EXIT,
-    "&": _EXIT,
-    
-    # "#": _WORD_BOUNDARY,  # for non-extended stenotype
-    # "-TDZ": "{-|}t",  # for non-extended stenotype
-    # "-DZ": "{-|}",  # for non-extended stenotype
-
 
     # LEFT BANK
 
@@ -99,22 +96,6 @@ _CHORDS = {
     "A*EU": "ay",
     "O*EU": "oy",
     "AO*EU": "ew",
-
-    # "_A": "ua",
-    # "_O": "uo",
-    # "_E": "ue",
-    # "_U": "uu",
-    # "_AO": "ao",
-    # "_EU": "ui",
-    # "_AOE": "ii",
-
-    # "_A*": "ya",
-    # "_O*": "yo",
-    # "_*E": "ye",
-    # "_*U": "yu",
-    # "_*EU": "yi",
-    # "_AO*E": "ey",
-    # "_AO*EU": "eye",
 
     # RIGHT BANK
 
@@ -229,6 +210,7 @@ _CHORDS = {
     # "-FPBS": "nsy",
 
     "-FRPLTD": "mple",
+    "-FRTD": "he",
     "-FLTD": "fle",
     "-GTD": "ge",
     "-FRPLTSDZ": "mply",
@@ -247,10 +229,6 @@ _CHORDS = {
     "-GDZ": "o",
     "-GZ": "u",
 
-    "-TDZ": "u",  # shift
-    "-SD": "a",  # shift
-    "-SDZ": "o",  # shift
-
 
     # PUNCTUATION
 
@@ -260,7 +238,78 @@ _CHORDS = {
     "-FPBLTD": "—" + _CONNECT_AFTER,
 }
 
-_CHORD_RESULT = "chord"
+# Entries which are translated normally
+_SPECIAL_ENTRIES = {
+    "S-P": "{^ ^}",
+    "KPA": "{}{-|}",
+    "KPA*": "{^}{-|}",
+    "SKW-T": "{^}'{^}",
+    "TP-PL": "{.}",
+    "KW-BG": "{,}",
+    "TP-BG": "{!}",
+    "KW-PL": "{?}",
+    "H-F": "{?}",
+    "H-PB": "{^}-{^}",
+}
+
+
+# Change control chords and special entries depending on whether an extended stenotype system is being used
+
+# For regular extended stenotype
+if "^-" in KEYS and "_" not in KEYS and "&-" not in KEYS:
+    _CHORDS.update({
+        # MODIFIERS
+
+        "^": _WORD_BOUNDARY,
+    })
+
+    _SPECIAL_ENTRIES.update({
+        "-TSDZ": "{#}{plover:end_solo_dict}",
+    })
+
+# For custom extended stenotype
+elif "^-" in KEYS and "_" in KEYS and "&-" in KEYS:
+    _CHORDS.update({
+        # MODIFIERS
+
+        "^": _CONNECT_BEFORE,
+        "_": _WORD_BOUNDARY,
+        "&": _EXIT,
+
+        # VOWELS
+
+        # "_A": "ua",
+        # "_O": "uo",
+        # "_E": "ue",
+        # "_U": "uu",
+        # "_AO": "ao",
+        # "_EU": "ui",
+        # "_AOE": "ii",
+
+        # "_A*": "ya",
+        # "_O*": "yo",
+        # "_*E": "ye",
+        # "_*U": "yu",
+        # "_*EU": "yi",
+        # "_AO*E": "ey",
+        # "_AO*EU": "eye",
+    })
+
+    _SPECIAL_ENTRIES.update({
+        "&": "{#}{plover:end_solo_dict}",
+        "_": "{^ ^}",
+    })
+
+# For regular English stenotype and other systems
+else:
+    _SPECIAL_ENTRIES.update({
+        "-TSDZ": "{#}{plover:end_solo_dict}",
+    })
+
+
+# Build the dictionary which is used to identify chords in a stroke
+
+_CHORD_RESULT = "chord" # arbitrary string
 
 _construct_trie = lambda: defaultdict(_construct_trie)
 _trie = _construct_trie()
@@ -274,21 +323,6 @@ for chord, entry in _CHORDS.items():
 
 _UNDO_STROKE = "*"
 
-_special_entries = {
-    # "-TSDZ": "{#}{plover:end_solo_dict}",
-    ".": "{#}{plover:end_solo_dict}",
-    "&": "{#}{plover:end_solo_dict}",
-    "_": "{^ ^}",
-    "S-P": "{^ ^}",
-    "KPA": "{}{-|}",
-    "KPA*": "{^}{-|}",
-    "SKW-T": "{^}'{^}",
-    "TP-PL": "{.}",
-    "KW-BG": "{,}",
-    "TP-BG": "{!}",
-    "H-PB": "{^}-{^}",
-    "H-F": "{?}",
-}
 
 #region Exports
 
@@ -300,12 +334,13 @@ def lookup(strokes_steno: tuple[str]) -> str:
 
     if steno == _UNDO_STROKE: raise KeyError
 
-    if steno in _special_entries:
-        return _special_entries[steno]
+    if steno in _SPECIAL_ENTRIES:
+        return _SPECIAL_ENTRIES[steno]
 
 
     out = ""
     prefix_word_boundary = False
+    connect_before = False
     capitalize = False
     exit = False
     connect = False
@@ -330,6 +365,7 @@ def lookup(strokes_steno: tuple[str]) -> str:
                 longest_chord_end_index = seek_index
 
 
+        # TODO clean up, may also depend on order which is not ideal
         if longest_chord_found.startswith(_WORD_BOUNDARY):
             prefix_word_boundary = True
             longest_chord_found = longest_chord_found[len(_WORD_BOUNDARY):]
@@ -337,7 +373,7 @@ def lookup(strokes_steno: tuple[str]) -> str:
             capitalize = True
             longest_chord_found = longest_chord_found[len(_CAPS):]
         if longest_chord_found.startswith(_CONNECT_BEFORE):
-            capitalize = True
+            connect_before = True
             longest_chord_found = longest_chord_found[len(_CONNECT_BEFORE):]
 
         if longest_chord_found.endswith(_EXIT):
@@ -354,10 +390,12 @@ def lookup(strokes_steno: tuple[str]) -> str:
 
     translation = f"{{&{out}}}" if len(out) > 0 else ""
     
-    if capitalize:
-        translation = "{-|}" + translation
     if prefix_word_boundary:
         translation = "{~|}" + translation
+    if capitalize:
+        translation = "{-|}" + translation
+    if connect_before:
+        translation = "{^}" + translation
     if exit:
         translation += "{plover:end_solo_dict}"
     if connect:
