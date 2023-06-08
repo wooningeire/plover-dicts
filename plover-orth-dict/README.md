@@ -10,7 +10,7 @@
 * Replace nonorthographic theories
 
 ## Mechanics
-`orth_fingerspelling.py` is the main orthographic dictionary. It should be disabled initially and can be thought of as a "mode" which you enter into or exit from.
+`orth_chording.py` is the main orthographic dictionary. It should be disabled initially and can be thought of as a "mode" which you enter into or exit from.
 
 *(`orth_entry.py` is an extra, experimental dictionary that allows you to enter the orthographic dictionary by folding a certain chord into a stroke. It may be clunky to use without extra keys, and it is not required in order to use the main orthographic dictionary.)*
 
@@ -205,10 +205,10 @@ This means that chords cannot be "stacked" nor overlap each other. This method a
 
 Chord-by-chord translations are placed inside a glue; i.e., `PA*PBGDZ` maps to "`{&piano}`" instead of just "`piano`".
 
-Chords and their translations are defined in `orth_fingerspelling.py` under the variable `_CHORDS`.
+Chords and their translations are defined in `orth_chording.py` under the variable `_CHORDS`.
 
 #### Special entries
-Special entries function like normal dictionary entries and are not split up chord-by-chord like other strokes. They are defined in `orth_fingerspelling.py` under the variable `_SPECIAL_ENTRIES`.
+Special entries function like normal dictionary entries and are not split up chord-by-chord like other strokes. They are defined in `orth_chording.py` under the variable `_SPECIAL_ENTRIES`.
 
 By default, these entries are:
 
@@ -224,4 +224,4 @@ By default, these entries are:
     "H-PB": "{^}-{^}",
     "-TSDZ": "{#}{plover:end_solo_dict}",
 
-Additional special entries can be added by editing `orth_fingerspelling.py`. Alternatively, you can also specify additional dictionaries to the command you use to enter the orthographic dictionary.
+Additional special entries can be added by editing `orth_chording.py`. Alternatively, you can also specify additional dictionaries to the command you use to enter the orthographic dictionary.

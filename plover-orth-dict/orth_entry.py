@@ -3,14 +3,14 @@ from plover.steno import Stroke
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-	from .orth_fingerspelling import LONGEST_KEY, lookup as _lookup
+	from .orth_chording import LONGEST_KEY, lookup as _lookup
 else:
 	# https://stackoverflow.com/questions/67631/how-can-i-import-a-module-dynamically-given-the-full-path
 	import importlib.util
 	import sys
 	import os
-	_MODULE_NAME = "orth_fingerspelling"
-	_MODULE_PATH = "C:/orth_fingerspelling.py"
+	_MODULE_NAME = "orth_chording"
+	_MODULE_PATH = "C:/orth_chording.py"
 	_spec = importlib.util.spec_from_file_location(_MODULE_NAME, _MODULE_PATH)
 	_module = importlib.util.module_from_spec(_spec)
 	_spec.loader.exec_module(_module)
@@ -21,7 +21,7 @@ else:
 LONGEST_KEY = 1
 
 _ENABLED_DICTS = [
-	r"orth_fingerspelling.py",
+	r"orth_chording.py",
 	r"commands.json",
 ]
 
