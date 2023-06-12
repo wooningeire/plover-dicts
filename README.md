@@ -5,7 +5,7 @@
 Below are various additional experimental mechanics present here that have been added to supplement Plover theory.
 
 ### `#`
-`#` denotes proper nouns (and other parts of speech) and initialisms. It is usually added to the first stroke that comprises the word or phrase. Many of the entries that use this mechanic are found in `number-key-proper-nouns.json` and `number-key-proper-nouns-main-dict-worthy.json`.
+`#` denotes proper nouns (and other parts of speech) and initialisms. It is usually added to the first stroke that comprises the word or phrase. Many of the entries that use this mechanic are found in `numberkey-proper-nouns.json` and `numberkey-proper-nouns-user.json`.
 * *[Potential change] Require the `#` modifier for each stroke that starts a new word in the proper noun*
   * *[Unclear] When to use `#` for pascal-case proper nouns*
 
@@ -58,9 +58,9 @@ Dictionary | Desc
 -|-
 🡳 *`downloads/movement.modal`* | [Kaoffie/Aerick's movement modal dictionary](https://github.com/aerickt/steno-dictionaries/blob/main/movement.modal)
 `user.json` | The inner machinations of my mind
-`number-key-proper-nouns-main-dict-worthy.json` | Main list of sharable entries that use the `#` key for proper nouns and initialisms
-`number-key-proper-nouns.json` | Main user list of entries that experimentally use the `#` key for proper words and initialisms
+`numberkey-proper-nouns-user.json` | User entries that experimentally use the `#` key for proper words and initialisms
 `underscore-symbols-and-text-commands.json` | Main list of entries that experimentally use the `_` key for symbols and text commands<br /><ul><li>`*G` suffix for Greek letter fingerspelling, `*PG` for uppercase</li></ul>
+`numberkey-proper-nouns.json` | Main list of entries that use the `#` key for proper nouns and initialisms
 `caret-affixes.json` | Main list of entries that experimentally use the `^` key for affixes and compound words
 `names.json` | Names of people and brands
 `software.json` | Software phrases and terminology
