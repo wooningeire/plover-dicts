@@ -49,7 +49,6 @@
 "PWUTSDZ": "{#control_l(b u)}",
 "PHRO*EUBGS": "{PLOVER:FOCUS}",
 "PHR*UGS": "{PLOVER:SUGGESTIONS}",
-"PHREUPB/STAUL": "{^}plover_console -s plover_plugins install -e .",
 "PH-FP": "{plover:undoable}{^}",
 "PR-RP": "{#}",
 "WR-RB": "{PLOVER:TOGGLE}",
