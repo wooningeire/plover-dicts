@@ -18,14 +18,13 @@ E.g., `#PHAT` ⇒ `Matt`.
 This addition has been made due to the high incidence of conflicts between proper words in `main.json`. `main.json` usually uses asterisks and stroke duplications to denote proper nouns, but the high number of combinations between these two make it difficult to determine what the resulting spelling/formatting will be. It is also uncertain whether the entries for common proper nouns will even exist, as seen through the high number of misstroke entries that counteract redundant stroke duplications in `main.json`.
 
 ### `^`
-`^` denotes affixes and segments of compound words. It (along with any other symbol modifiers described below) is usually added to the first stroke that comprises the affix. Many of the entries that use this mechanic are found in `caret-affixes.json`.
+`^` denotes affixes and segments of compound words. `^` and `*` (to denote prefixes) are added to all strokes that comprise the affix, but `#` is only added to the first stroke. Many of the entries that use this mechanic are found in `caret-affixes.json`.
 * `^` alone usually indicates a suffix, e.g., `^HRAOEUBG` ⇒ `{^}like`.
-* The addition of `*` usually indicates a prefix, e.g., `^PH*E/TA` ⇒ `meta{^}`.
-  * The typical uses of `*` for variations, conflicts, and chords that use `*` still apply in some circumstances, e.g., `^WO*RT/KWREU` ⇒ `{^}worthy`.
+* The addition of `*` usually indicates a prefix, e.g., `^PH*E/^TA*` ⇒ `meta{^}`.
+  * The typical uses of `*` for variations, conflicts, and chords that use `*` still apply in some circumstances, e.g., `^WO*RT/^KWREU` ⇒ `{^}worthy`.
   * `*` functions as a toggle (i.e., if a stroke that already contains `*` would need another `*` added to it, then the stroke should not have a `*`), e.g., `^ORT` ⇒ `ortho{^}`. (Find single-stroke entries with the regex `^"[^*]+": ".+\{\^\}",$`)
 * The addition of `#` usually indicates hyphenation, e.g., `#^TPRAOE` ⇒ `{^}-free`.
-  * The usage in the previous section still applies; `#` can also be used for proper words, e.g., `#^WEUPBG` ⇒ `{*-|}{^}Wing`.
-* *[Potential change] Require the `^` or `^*` modifier for all strokes in the affix*
+  * `#` can still be used for proper words or proper affixes, e.g., `#^WEUPBG` ⇒ `{*-|}{^}Wing`.
 * *[Unclear] When to use `^` or `#` for pascal-case proper nouns*
 
 `^` is also uncommonly used to indicate the letter `A` for briefing purposes.
