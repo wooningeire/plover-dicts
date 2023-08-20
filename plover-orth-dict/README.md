@@ -104,6 +104,7 @@ These clusters can be individually chorded the same as in Plover theory:
 * `-FRP`: mp
 * `-FRPB`: rch
 * `-FRPBLG`: nch
+* `-FRB`: rv
 * `-FP`: ch
 * `-FPL`: sm
 * `-FBG`: sk
@@ -111,6 +112,8 @@ These clusters can be individually chorded the same as in Plover theory:
 These clusters have been changed:
 * `-FPB`: sh (`-RB`: rb)
 * `-FPBG`: nk
+* `-FLG`: lk
+* `-FLT`: st (`-FT`: ft)
 
 #### `-SZ` as doubler
 `-SZ` is sometimes used to double an ending consonant.
@@ -122,22 +125,18 @@ These clusters have been changed:
 
 #### Additional right bank chords
 Other various chords have been introduced:
-* `-FRPBG`: hr
+* `-FRPBG`: nc
 * `-FRPBD`: hn
 * `-FRPBDZ`: hns
-* `-FRB`: rf
-* `-FRBL`: rv
+* `-FRBL`: rf
 * `-FPBL`: tch
-* `-FPBG`: nk
-* `-FPLG`: ph
-    * `-FRPLG`: rph
+* `-FPG`: ph
+    * `-FRPG`: rph
 * `-FBLG`: sc
-* `-FPG`: nc
-* `-FLG`: lk
 * `-FG`: gh
     * `-FRG`: rgh
-* `-FLT`: st
 * `-PBLG`: dg
+* `-PLG`: pl
 * `-BLG`: ck
 * `-BLGT`: tion (`-GS`: gs)
     * `-FBLGT`: ction (`-BGS`: x)
