@@ -79,7 +79,7 @@ Dictionary | Desc
 `sk-ex.json` | Experimental entries that use various chords for some words that start with `ex`, depending on the consonant that follows it
 `skpw-inc_enc_anc.json` | Entries that use the chord `SKPW-` for words that start with `inc`, `enc`, `anc`
 `kpw-imp_emp_amp_imb_emb_amb.json` | Entries that use the chord `KPW-` for words that start with `imp`, `emp`, `amp`, `imb`, `emb`, `amb`
-`spw-inc_enc_anc_ant.json` | Entries that use the chord `SPW-` for words that start with `ant`
+`spw-ant.json` | Entries that use the chord `SPW-` for words that start with `ant`
 `main.patch.dicp` | Patch dictionary for removing bad entries from `main.json` that cause boundary conflicts
 `../commands.json` | *Builtin*
 `../main.json` (DISABLED) | *Builtin*
@@ -88,7 +88,6 @@ Dictionary | Desc
 🡴 *`.../plover_control_seq_dict/fingerspelling_control_seqs.py`* | Python dictionary that defines control sequence combinations, where letters are the accessed the same as through fingerspelling
 🡳 *`downloads/emily-symbols.json`* | [EPLHREU's symbols dictionary](https://github.com/EPLHREU/emily-symbols)
 🡳 *`downloads/jeff-phrasing/jeff-phrasing.json`* | [jthlim's phrasing dictionary](https://github.com/jthlim/jeff-phrasing)
-🡳 *`downloads/aerick-phrasing.json`* (DISABLED) | [Aerick's phrasing dictionary](https://github.com/aerickt/aerick-phrasing)
 🡴 *`.../plover_unicodepoint_dict/unicodepoint.py`* | Python dictionary that allows arbitrary unicode character input based on its codepoint
 🡴 *`.../plover_orth_dict/orth_special_entries.json`* (DISABLED) | Special entries for the orthographic spelling dictionary
 🡴 *`.../plover_orth_dict/orth_entry.py`* | Python dictionary that allows usage of and access into the orthographic spelling dictionary without having to enable it first
