@@ -1,6 +1,6 @@
 {
 "#_": "{#alt(tab)}",
-"&": "{plover:solo_dict:+orth_chording.py}",
+"&": "{plover:solo_dict:+orth_chording.py,+commands.json,+plover_recommended_dictionary_commands.json,+fingerspelling_control_seqs.py}",
 "STPW": "=retro_everything:{#control(b u)},{#control(b u)}",
 "STPHOEU": "{#}{^}/{^}",
 "STPH*FR": "{#Shift(Home)}{^}",

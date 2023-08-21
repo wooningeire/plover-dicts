@@ -59,6 +59,7 @@ Dictionary | Desc
 `user.json` | The inner machinations of my mind
 `numberkey-proper-nouns-user.json` | User entries that experimentally use the `#` key for proper words and initialisms
 `underscore-symbols-and-text-commands.json` | Main list of entries that experimentally use the `_` key for symbols and text commands<br /><ul><li>`*G` suffix for Greek letter fingerspelling, `*PG` for uppercase</li></ul>
+`skeletal.json` | Brief-like skeletal entries that contain each syllable of the translated word(s)
 `numberkey-proper-nouns.json` | Main list of entries that use the `#` key for proper nouns and initialisms
 `caret-affixes.json` | Main list of entries that experimentally use the `^` key for affixes and compound words
 `names.json` | Names of people and brands
