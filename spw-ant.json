@@ -16,6 +16,8 @@
 "SPWHOLG": "anthology",
 "SPWHEPL": "anthem",
 "SPWAOE": "ante",
+"SPWAOEUBGT": "indict",
+"SPWAOEUT": "indict",
 "SPWAOED": "antecedent",
 "SPWAOED/EPBT": "antecedent",
 "SPWAOUFD": "induced",
@@ -27,6 +29,7 @@
 "SPWE/TPHA": "antenna",
 "SPWE/PWE/HRUPL": "antebellum",
 "SPWEUFPT": "anticipate",
+"SPWEUBGT": "indicate",
 "SPWEUS/PAEUGS": "anticipation",
 "SPWEUS/PAEUT": "anticipate",
 "SPWEPB/KWRA": "antenna"

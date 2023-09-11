@@ -1,4 +1,6 @@
 {
+"1K3W4REURB": "English",
+"1K3WREUD": "Ingrid",
 "KPWHRA/TOER": "ambulatory",
 "KPWHRAOE": "employee",
 "KPWHRAOEU": "imply",
@@ -139,6 +141,7 @@
 "KPWOS": "emboss",
 "KPW*EURLG": "empirical",
 "KPW*EUT": "empathy",
+"KPW*EFRB": "imperative",
 "KPW*ER": "amber",
 "KPW*ERB": "embellish",
 "KPW*ERL": "imperil",
@@ -161,6 +164,7 @@
 "KPWEFL": "embezzle",
 "KPWER": "ember",
 "KPWER/SAPBD": "ampersand",
+"KPWER/TEUF": "imperative",
 "KPWER/KWRAL": "imperial",
 "KPWERPBLG": "amperage",
 "KPWERPBT": "impertinent",
@@ -186,5 +190,6 @@
 "KPW-L": "ample",
 "KPW-LG": "ambling",
 "KPW-LS": "ambles",
-"KPW-LD": "ambled"
+"KPW-LD": "ambled",
+"KPW-T": "empty"
 }

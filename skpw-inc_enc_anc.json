@@ -1,6 +1,7 @@
 {
 "1K3W5": "Inca",
 "1K3W57B": "Incan",
+"1K3W57BD": "England",
 "SKPWHRAOEUPB": "incline",
 "SKPWHRAOEUPBT": "incompliant",
 "SKPWHRAOET": "incomplete",
@@ -72,6 +73,8 @@
 "SKPWOEBL": "encodable",
 "SKPWOED": "encode",
 "SKPWOURPBT": "encounter",
+"SKPWOUPBT/^ER": "encounter",
+"SKPWOUPBT/*ER": "encounter",
 "SKPWOR": "anchor",
 "SKPWOR/POR/KWRAL": "incorporeal",
 "SKPWOR/PORL": "incorporeal",
