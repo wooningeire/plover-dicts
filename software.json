@@ -23,6 +23,8 @@
 "2K3W-78": "GPL",
 "2K3W-8": "gl",
 "2K3W-8/S-L": "GLSL",
+"2K56": "DFA",
+"23456": "NFA",
 "2340R": "NOR",
 "234E9/HREU/TPAOEU": "Netlify",
 "234-7/PH": "{>}npm",
@@ -56,9 +58,11 @@
 "#WEB/KP-R": "WebXR",
 "#WEB/KEUT": "WebKit",
 "#WEB/A/SEPL/PWHREU": "WebAssembly",
+"4R-8/SR-PL": "LLVM",
 "4E/ROE/KAOU": "Heroku",
 "4-9/PH-L": "HTML",
 "50*U7BGD": "Unicode",
+"50U/TPHEUBGS": "Unix",
 "5R/PA/TPHET": "ARPANET",
 "5R7/TPHET": "ARPANET",
 "0R": "OR",
@@ -66,5 +70,6 @@
 "SKWR-FPB": "json",
 "PHOE/SKWREU/^PWAEUBG": "mojibake",
 "PHOEPBLG/^PWAEUBG": "mojibake",
+"HREBGS/AOEPL": "lexeme",
 "AOEU/TKEPBT": "ident"
 }
