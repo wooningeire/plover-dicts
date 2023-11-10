@@ -10,6 +10,7 @@
 "WEUR78/WO*RBGS": "WyrmWorks",
 "4R57B8G/KRAOUS": "Lagiacrus",
 "EU6BG/KWRER/KA": "Iskierka",
+"^*EU/PHAO/TKPWEU": "imoogi",
 "SKAO*UT": "scute",
 "SPHA*EU": "zmei",
 "SPHAEU": "zmey",
@@ -67,6 +68,7 @@
 "TPHUBG/*ER": "knucker",
 "TPEUP/THER": "phipthere",
 "TEU/HRO": "ptilo{^}",
+"KPWHEUS/PWAOE/TPHA": "amphisbaena",
 "KPAOEPB/TPEUBGS": "xenofiction",
 "KWEU/HREUPB": "qilin",
 "KWELTS/KWAT": "quetzalcoatl",
@@ -139,9 +141,12 @@
 "APL/TPEUP/THER": "amphipthere",
 "APL/TPEUP/TER": "amphiptere",
 "APL/TPEUS": "amphis",
+"APL/TPEUS/PWAOE/TPHA": "amphisbaena",
 "OU/RO/PWO/ROS": "ouroboros",
 "OUR/PWO/ROS": "ouroboros",
 "OUR/PWO*RS": "ouroboros",
 "OUR/PWOR/O*S": "ouroboros",
+"EUPL/PHAOG/KWREU": "imoogi",
+"EUPL/AOG/KWREU": "imoogi",
 "UPB/TKPWRAOUL/TKPWRAEUD": "unguligrade"
 }
