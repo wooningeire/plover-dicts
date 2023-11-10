@@ -79,7 +79,7 @@ Dictionary | Desc
 `sk-ex.json` | Experimental entries that use various chords for some words that start with `ex`, depending on the consonant that follows it
 `skpw-inc_enc_anc.json` | Entries that use the chord `SKPW-` for words that start with `inc`, `enc`, `anc`
 `kpw-imp_emp_amp_imb_emb_amb.json` | Entries that use the chord `KPW-` for words that start with `imp`, `emp`, `amp`, `imb`, `emb`, `amb`
-`spw-ant.json` | Entries that use the chord `SPW-` for words that start with `ant`
+`spw-ind-end-and-ant.json` | Entries that use the chord `SPW-` for words that start with `ant`, `ind`, `end,` `and`
 `main.patch.dicp` | Patch dictionary for removing bad entries from `main.json` that cause boundary conflicts
 `../commands.json` | *Builtin*
 `../main.json` (DISABLED) | *Builtin*
