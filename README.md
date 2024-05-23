@@ -90,6 +90,7 @@ Dictionary | Desc
 🡳 *`downloads/jeff-phrasing/jeff-phrasing.json`* | [jthlim's phrasing dictionary](https://github.com/jthlim/jeff-phrasing)
 🡳 *`downloads/aerick-phrasing.json`* (DISABLED) | [Aerick's phrasing dictionary](https://github.com/aerickt/aerick-phrasing)
 🡴 *`.../plover_unicodepoint_dict/unicodepoint.py`* | Python dictionary that allows arbitrary unicode character input based on its codepoint
+🡴 *`.../plover_orth_dict/ipa_chording.py`* (DISABLED) | Python dictionary for chording IPA syllables
 🡴 *`.../plover_orth_dict/orth_chording.py`* (DISABLED) | Python dictionary for orthographic chording
 
 🡳 indicates an external downloaded dictionary.
