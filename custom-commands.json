@@ -1,5 +1,6 @@
 {
 "#_": "{#alt(tab)}",
+"^PHRAU": "{plover:solo_dict:+raw-solo-dict.json}{MODE:SET_SPACE:/}",
 "&": "{plover:solo_dict:+orth_chording.py,+commands.json,+plover_recommended_dictionary_commands.json,+fingerspelling_control_seqs.py}",
 "STPW": "=retro_everything:{#control(b u)},{#control(b u)}",
 "STPHOEU": "{#}{^}/{^}",
@@ -48,6 +49,7 @@
 "PW*URTSDZ": "{*!}{#control(shift(left) b u) right control(b u)}",
 "PWURTSDZ": "{#control(shift(left) b u) right control(b u)}",
 "PWUTSDZ": "{#control_l(b u)}",
+"PHRAU": "{plover:solo_dict:+raw-solo-dict.json}{^ ^}{MODE:SET_SPACE:/}",
 "PHRO*EUBGS": "{PLOVER:FOCUS}",
 "PHR*UGS": "{PLOVER:SUGGESTIONS}",
 "PH-FP": "{plover:undoable}{^}",
