@@ -12,8 +12,6 @@
 ## Mechanics
 `orth_chording.py` is the main orthographic dictionary. It should be disabled initially and can be thought of as a "mode" which you enter into or exit from.
 
-*(`orth_entry.py` is an extra, experimental dictionary that allows you to enter the orthographic dictionary by folding a certain chord into a stroke. It may be clunky to use without extra keys, and it is not required in order to use the main orthographic dictionary.)*
-
 See setup instructions in `SETUP.md`.
 
 ### Example outlines
