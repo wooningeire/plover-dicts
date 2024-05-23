@@ -2,238 +2,241 @@ from plover.steno import Stroke
 from plover.system import KEYS
 # TODO glitchy behavior when switching systems, and system does not update properly. Due to script or something else?
 
+
 from collections import defaultdict
+from enum import Enum
 
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     KEYS: tuple[str] = ()
 
+class Modifier(Enum):
+    WORD_BOUNDARY = 0
+    CAPS = 1
+    EXIT = 2
+    CONNECT_BEFORE = 3
+    CONNECT_AFTER = 4
 
-# TODO temp arbitrary strings, not ideal
-_WORD_BOUNDARY = " "
-_CAPS = "{-|}"
-_EXIT = "<exit>"
-_CONNECT_BEFORE = "&"
-_CONNECT_AFTER = "^"
 
 _CHORDS = {
     # MODIFIERS
 
-    "#": _CAPS,
+    "#": ("", (Modifier.CAPS,)),
 
     # LEFT BANK
 
-    "S": "s",
-    "T": "t",
-    "K": "c",
-    "P": "p",
-    "W": "w",
-    "H": "h",
-    "R": "r",
+    "S": ("s", ()),
+    "T": ("t", ()),
+    "K": ("c", ()),
+    "P": ("p", ()),
+    "W": ("w", ()),
+    "H": ("h", ()),
+    "R": ("r", ()),
 
-    "STKPW": "z",
-    "SKWR": "j",
-    "SR": "v",
-    "TK": "d",
-    "TKPW": "g",
-    "TP": "f",
-    "TPH": "n",
-    "KP": "x",
-    "KPW": "k",
-    "KW": "q",
-    "KWR": "y",
-    "PW": "b",
-    "PH": "m",
-    "HR": "l",
+    "STKPW": ("z", ()),
+    "SKWR": ("j", ()),
+    "SR": ("v", ()),
+    "TK": ("d", ()),
+    "TKPW": ("g", ()),
+    "TP": ("f", ()),
+    "TPH": ("n", ()),
+    "KP": ("x", ()),
+    "KPW": ("k", ()),
+    "KW": ("q", ()),
+    "KWR": ("y", ()),
+    "PW": ("b", ()),
+    "PH": ("m", ()),
+    "HR": ("l", ()),
 
-    "SWHR": "shr",
-    "TWHR": "thr",
-    "KWHR": "chr",
+    "SWHR": ("shr", ()),
+    "TWHR": ("thr", ()),
+    "KWHR": ("chr", ()),
 
-    "STK": "dis",
-    "SKP": "ss",
-    "SKPW": "sk",
-    "SWR": "sr",
-    "TKPH": "kn",
-    "TKWHR": "rh",
-    "TPW": "phl",
-    "TPWH": "ph",
-    "TPWR": "rh",
-    "KWH": "qu",
-    "WHR": "hr",
+    "STK": ("dis", ()),
+    "SKP": ("ss", ()),
+    "SKPW": ("sk", ()),
+    "SWR": ("sr", ()),
+    "TKPH": ("kn", ()),
+    "TKWHR": ("rh", ()),
+    "TPW": ("phl", ()),
+    "TPWH": ("ph", ()),
+    "TPWR": ("rh", ()),
+    "KWH": ("qu", ()),
+    "WHR": ("hr", ()),
 
-    "TPHR": "fl",
-    "PHR": "pl",
+    "TPHR": ("fl", ()),
+    "PHR": ("pl", ()),
 
-    "STPHR": "'", # mirrors right-hand apostrophe
+    "STPHR": ("'", ()), # mirrors right-hand apostrophe
 
     # VOWELS
 
-    "A": "a",
-    "O": "o",
-    "E": "e",
-    "U": "u",
-    "AO": "oo",
-    "AE": "ea",
-    "EU": "i",
-    "AOE": "ee",
-    "AOU": "ue",
-    "AEU": "ai",
-    "AOEU": "eu",
+    "A": ("a", ()),
+    "O": ("o", ()),
+    "E": ("e", ()),
+    "U": ("u", ()),
+    "AO": ("oo", ()),
+    "AE": ("ea", ()),
+    "EU": ("i", ()),
+    "AOE": ("ee", ()),
+    "AOU": ("ue", ()),
+    "AEU": ("ai", ()),
+    "AOEU": ("eu", ()),
 
-    "A*": "ia",
-    "O*": "io",
-    "*E": "ie",
-    "*U": "iu",
-    "AO*": "oa",
-    "A*E": "ae",
-    "A*U": "aw",
-    "O*E": "eo",
-    "O*U": "ow",
-    "*EU": "y",
-    "AO*E": "ei",
-    "AO*U": "iou",
-    "A*EU": "ay",
-    "O*EU": "oy",
-    "AO*EU": "ew",
+    "A*": ("ia", ()),
+    "O*": ("io", ()),
+    "*E": ("ie", ()),
+    "*U": ("iu", ()),
+    "AO*": ("oa", ()),
+    "A*E": ("ae", ()),
+    "A*U": ("aw", ()),
+    "O*E": ("eo", ()),
+    "O*U": ("ow", ()),
+    "*EU": ("y", ()),
+    "AO*E": ("ei", ()),
+    "AO*U": ("iou", ()),
+    "A*EU": ("ay", ()),
+    "O*EU": ("oy", ()),
+    "AO*EU": ("ew", ()),
 
     # RIGHT BANK
 
-    "-F": "f",
-    "-R": "r",
-    "-P": "p",
-    "-B": "b",
-    "-L": "l",
-    "-G": "g",
-    "-T": "t",
-    "-S": "s",
-    "-D": "d",
-    "-Z": "z",
+    "-F": ("f", ()),
+    "-R": ("r", ()),
+    "-P": ("p", ()),
+    "-B": ("b", ()),
+    "-L": ("l", ()),
+    "-G": ("g", ()),
+    "-T": ("t", ()),
+    "-S": ("s", ()),
+    "-D": ("d", ()),
+    "-Z": ("z", ()),
 
-    "-FB": "v",
-    "-PB": "n",
-    "-PL": "m",
-    "-BGS": "x",
-    "-BG": "k",
+    "-FB": ("v", ()),
+    "-PB": ("n", ()),
+    "-PL": ("m", ()),
+    "-BGS": ("x", ()),
+    "-BG": ("k", ()),
 
-    "-FRP": "mp",
-    "-FRPB": "rch",
-    "-FRPBLG": "nch",
-    "-FRPG": "rph",
-    "-FRB": "rv",
-    "-FRBL": "rf",
-    "-FRG": "rgh",
-    "-FP": "ch",
-    "-FPB": "sh",
-    "-FPBL": "tch",
-    "-FPBG": "nk",
-    "-FPL": "sm",
-    "-FPG": "ph",
-    "-FBLG": "sc",
-    "-FBLGT": "ction",
-    "-FBG": "sk",
-    "-FLG": "lk",
-    "-FLT": "st",
-    "-FG": "gh",
-    "-PBLGT": "j",
-    "-PBLG": "dg",
-    "-PLG": "pl",
-    "-BLG": "ck",
-    "-BLGT": "tion",
-    "-BGZ": "ks",
-    "-DZ": "ds",
+    "-FR": ("rf", ()),
+    "-FRP": ("mp", ()),
+    "-FRPB": ("rch", ()),
+    "-FRPBLG": ("nch", ()),
+    "-FRPLG": ("rph", ()),
+    "-FRB": ("rv", ()),
+    "-FRBL": ("mb", ()),
+    "-FRG": ("rgh", ()),
+    "-FP": ("ch", ()),
+    "-FPB": ("sh", ()),
+    "-FPBL": ("tch", ()),
+    "-FPBG": ("nk", ()),
+    "-FPL": ("sm", ()),
+    "-FPLG": ("ph", ()),
+    "-FPG": ("sc", ()),
+    "-FBLGT": ("ction", ()),
+    "-FBG": ("sk", ()),
+    "-FLG": ("lk", ()),
+    "-FLT": ("st", ()),
+    "-FG": ("gh", ()),
+    "-PBLGT": ("j", ()),
+    "-PBLG": ("dg", ()),
+    "-PLG": ("pl", ()),
+    "-BLG": ("ck", ()),
+    "-BLGT": ("tion", ()),
+    "-BGZ": ("ks", ()),
+    "-DZ": ("ds", ()),
 
-    "-FSZ": "ff",
-    "-FRSZ": "hh",
-    "-PBSZ": "nn",
-    "-LSZ": "ll",
-    "-SZ": "ss",
+    "-FSZ": ("ff", ()),
+    "-FRSZ": ("hh", ()),
+    "-PBSZ": ("nn", ()),
+    "-LSZ": ("ll", ()),
+    "-SZ": ("ss", ()),
     
 
     # EXPERIMENTATION ZONE
 
     # c
-    "-PG": "c",
-    "-FRPBG": "nc",
-    # "-FBG": "c",
-    # "-FRBG": "rc",
-    # "-FPBLG": "nc",
+    "-PG": ("c", ()),
+    "-FRPBG": ("nc", ()),
+    # "-FBG": ("c", ()),
+    # "-FRBG": ("rc", ()),
+    # "-FPBLG": ("nc", ()),
 
     # h
-    "-FR": "h",
-    "-FRPBD": "hn",
-    "-FRPBDZ": "hns",
-    "-FRBG": "hk",
-    # "-FRPBL": "hr",
-    # "-FRPBG": "hk",
+    "-FRLG": ("h", ()),
+    "-FRPBD": ("hn", ()),
+    "-FRPBDZ": ("hns", ()),
+    "-FRBG": ("hk", ()),
+    # "-FRPBL": ("hr", ()),
+    # "-FRPBG": ("hk", ()),
 
     # w
-    "-FBL": "w",
-    # "-FPG": "wn",
-    # "-RPG": "wr",
-    # "-PLG": "wl",
-    # "-PG": "w",
+    "-FBL": ("w", ()),
+    # "-FPG": ("wn", ()),
+    # "-RPG": ("wr", ()),
+    # "-PLG": ("wl", ()),
+    # "-PG": ("w", ()),
 
     # q
-    "-FPBLG": "q",
+    "-FPBLG": ("q", ()),
 
     # th
-    # "-PLGT": "th",
-    "-GT": "th",
+    # "-PLGT": ("th", ()),
+    "-GT": ("th", ()),
     
     
     # ENDING VOWELS
 
-    "-TSDZ": "y",
-    "-TD": "e",
+    "-TSDZ": ("y", ()),
+    "-TD": ("e", ()),
 
-    "-FRT": "te",
-    "-FRS": "se",
-    "-FRD": "de",
-    "-FRZ": "ze",
-    "-FRTS": "tes",
-    "-FRDZ": "des",
-    "-FRLS": "lse",
-    "-FRGT": "the",
-    "-FPBT": "ty",
-    "-FPBS": "sy",
-    "-FPBD": "dy",
-    "-FPBZ": "zy",
-    "-FPBLS": "lsy",
-    "-FPBGT": "thy",
+    "-FRT": ("te", ()),
+    "-FRS": ("se", ()),
+    "-FRD": ("de", ()),
+    "-FRZ": ("ze", ()),
+    "-FRTS": ("tes", ()),
+    "-FRDZ": ("des", ()),
+    "-FRLS": ("lse", ()),
+    "-FRGT": ("the", ()),
+    "-FPBT": ("ty", ()),
+    "-FPBS": ("sy", ()),
+    "-FPBD": ("dy", ()),
+    "-FPBZ": ("zy", ()),
+    "-FPBLS": ("lsy", ()),
+    "-FPBGT": ("thy", ()),
 
-    "-FRPBT": "nte",
-    "-FRPBS": "nse",
-    # "-FPBT": "nty",
-    # "-FPBS": "nsy",
+    "-FRPBT": ("nte", ()),
+    "-FRPBS": ("nse", ()),
+    # "-FPBT": ("nty", ()),
+    # "-FPBS": ("nsy", ()),
 
-    "-FRPLTD": "mple",
-    "-FRTD": "he",
-    "-FLTD": "fle",
-    "-GTD": "ge",
-    "-FRPLTSDZ": "mply",
+    "-FRPLTD": ("mple", ()),
+    "-FRTD": ("he", ()),
+    "-FLTD": ("fle", ()),
+    "-GTD": ("ge", ()),
+    "-FRPLTSDZ": ("mply", ()),
 
-    "-PBLGTD": "dge",
-    "-PBLGTSDZ": "dgy",
+    "-PBLGTD": ("dge", ()),
+    "-PBLGTSDZ": ("dgy", ()),
 
-    # "-PLGTD": "the",
-    # "-PLGTSDZ": "thy",
+    # "-PLGTD": ("the", ()),
+    # "-PLGTSDZ": ("thy", ()),
 
     # experimentation zone 
 
-    # "-GD": "y",
-    "-GSZ": "a",
-    "-GD": "i",
-    "-GDZ": "o",
-    "-GZ": "u",
+    # "-GD": ("y", ()),
+    "-GSZ": ("a", ()),
+    "-GD": ("i", ()),
+    "-GDZ": ("o", ()),
+    "-GZ": ("u", ()),
 
 
     # PUNCTUATION
 
-    "-FPLT": ".",
-    "-FRPLT": "'",
-    "-FPBLT": "-" + _CONNECT_AFTER,
-    "-FPBLTD": "—" + _CONNECT_AFTER,
+    "-FPLT": (".", ()),
+    "-FRPLT": ("'", ()),
+    "-FPBLT": ("-", (Modifier.CONNECT_AFTER,)),
+    "-FPBLTD": ("—", (Modifier.CONNECT_AFTER,)),
 }
 
 # Entries which are translated normally
@@ -258,7 +261,7 @@ if "^-" in KEYS and "_" not in KEYS and "&-" not in KEYS:
     _CHORDS.update({
         # MODIFIERS
 
-        "^": _WORD_BOUNDARY,
+        "^": ("", (Modifier.WORD_BOUNDARY,)),
     })
 
     _SPECIAL_ENTRIES.update({
@@ -270,9 +273,9 @@ elif "^-" in KEYS and "_" in KEYS and "&-" in KEYS:
     _CHORDS.update({
         # MODIFIERS
 
-        "^": _CONNECT_BEFORE,
-        "_": _WORD_BOUNDARY,
-        "&": _EXIT,
+        "^": ("", (Modifier.CONNECT_BEFORE,)),
+        "_": ("", (Modifier.WORD_BOUNDARY,)),
+        "&": ("", (Modifier.EXIT,)),
 
         # VOWELS
 
@@ -337,11 +340,7 @@ def lookup(strokes_steno: tuple[str]) -> str:
 
 
     out = ""
-    prefix_word_boundary = False
-    connect_before = False
-    capitalize = False
-    exit = False
-    connect = False
+    modifiers: set[Modifier] = set()
 
     keys: tuple[str] = Stroke.from_steno(strokes_steno[0]).keys()
 
@@ -349,7 +348,7 @@ def lookup(strokes_steno: tuple[str]) -> str:
     while chord_start_index < len(keys):
         current_trie = _trie
 
-        longest_chord_found = ""
+        longest_chord_found, longest_chord_modifiers = ("", ())
         longest_chord_end_index = chord_start_index
 
         for seek_index in range(chord_start_index, len(keys)):
@@ -359,44 +358,27 @@ def lookup(strokes_steno: tuple[str]) -> str:
             current_trie = current_trie[key]
 
             if _CHORD_RESULT in current_trie:
-                longest_chord_found = current_trie[_CHORD_RESULT]
+                longest_chord_found, longest_chord_modifiers = current_trie[_CHORD_RESULT]
                 longest_chord_end_index = seek_index
 
 
-        # TODO clean up, may also depend on order which is not ideal
-        if longest_chord_found.startswith(_WORD_BOUNDARY):
-            prefix_word_boundary = True
-            longest_chord_found = longest_chord_found[len(_WORD_BOUNDARY):]
-        if longest_chord_found.startswith(_CAPS):
-            capitalize = True
-            longest_chord_found = longest_chord_found[len(_CAPS):]
-        if longest_chord_found.startswith(_CONNECT_BEFORE):
-            connect_before = True
-            longest_chord_found = longest_chord_found[len(_CONNECT_BEFORE):]
-
-        if longest_chord_found.endswith(_EXIT):
-            exit = True
-            longest_chord_found = longest_chord_found[:-len(_EXIT)]
-        if longest_chord_found.endswith(_CONNECT_AFTER):
-            connect = True
-            longest_chord_found = longest_chord_found[:-len(_CONNECT_AFTER)]
-
         out += longest_chord_found
+        modifiers.update(longest_chord_modifiers)
 
         chord_start_index = longest_chord_end_index + 1
 
 
     translation = f"{{&{out}}}" if len(out) > 0 else ""
     
-    if prefix_word_boundary:
+    if Modifier.WORD_BOUNDARY in modifiers:
         translation = "{~|}" + translation
-    if capitalize:
+    if Modifier.CAPS in modifiers:
         translation = "{-|}" + translation
-    if connect_before:
+    if Modifier.CONNECT_BEFORE in modifiers:
         translation = "{^}" + translation
-    if exit:
+    if Modifier.EXIT in modifiers:
         translation += "{plover:end_solo_dict}"
-    if connect:
+    if Modifier.CONNECT_AFTER in modifiers:
         translation += "{^}"
 
     return translation

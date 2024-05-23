@@ -88,7 +88,7 @@ No asterisk | Asterisk
 #### Right bank letters
 All single-key chords represent their key values. Other chords include:
 * `-PG`: c
-* `-FR`: h
+* `-FRLG`: h
 * `-PBLGT`: j (`-PBLG`: dg)
 * `-BG`: k (`-BLG`: ck)
 * `-PL`: m
@@ -125,14 +125,15 @@ These clusters have been changed:
 
 #### Additional right bank chords
 Other various chords have been introduced:
+* `-FR`: rf
 * `-FRPBG`: nc
 * `-FRPBD`: hn
 * `-FRPBDZ`: hns
-* `-FRBL`: rf
+* `-FRBL`: mb
 * `-FPBL`: tch
-* `-FPG`: ph
-    * `-FRPG`: rph
-* `-FBLG`: sc
+* `-FPLG`: ph
+    * `-FRPLG`: rph
+* `-FPG`: sc
 * `-FG`: gh
     * `-FRG`: rgh
 * `-PBLG`: dg
