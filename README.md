@@ -80,17 +80,15 @@ Dictionary | Desc
 `skpw-inc_enc_anc.json` | Entries that use the chord `SKPW-` for words that start with `inc`, `enc`, `anc`
 `kpw-imp_emp_amp_imb_emb_amb.json` | Entries that use the chord `KPW-` for words that start with `imp`, `emp`, `amp`, `imb`, `emb`, `amb`
 `spw-ind-end-and-ant.json` | Entries that use the chord `SPW-` for words that start with `ant`, `ind`, `end,` `and`
+`raw-solo-dict.json` (DISABLED) | Used for inputing series of raw slash-separated strokes<br />Entered using `PHRAU` from `custom-commands.json` and exited using `PHRAU`
 `main.patch.dicp` | Patch dictionary for removing bad entries from `main.json` that cause boundary conflicts
 `../commands.json` | *Builtin*
 `../main.json` (DISABLED) | *Builtin*
 🡳 *`downloads/rh-numpad.json`* | [Aerick's right-hand numpad dictionary](https://github.com/aerickt/steno-dictionaries/blob/main/rh-numpad.json)
-🡳 *`downloads/show_stroke.json`* | Slight alteration of Benoit Pierre's raw stroke example for Python dictionaries<br />Uses `PHRAU` as the initial stroke and outputs `/` at first for undoability
 🡴 *`.../plover_control_seq_dict/fingerspelling_control_seqs.py`* | Python dictionary that defines control sequence combinations, where letters are the accessed the same as through fingerspelling
 🡳 *`downloads/emily-symbols.json`* | [EPLHREU's symbols dictionary](https://github.com/EPLHREU/emily-symbols)
 🡳 *`downloads/jeff-phrasing/jeff-phrasing.json`* | [jthlim's phrasing dictionary](https://github.com/jthlim/jeff-phrasing)
 🡴 *`.../plover_unicodepoint_dict/unicodepoint.py`* | Python dictionary that allows arbitrary unicode character input based on its codepoint
-🡴 *`.../plover_orth_dict/orth_special_entries.json`* (DISABLED) | Special entries for the orthographic spelling dictionary
-🡴 *`.../plover_orth_dict/orth_entry.py`* | Python dictionary that allows usage of and access into the orthographic spelling dictionary without having to enable it first
 🡴 *`.../plover_orth_dict/orth_chording.py`* (DISABLED) | Python dictionary for orthographic chording
 
 🡳 indicates an external downloaded dictionary.
