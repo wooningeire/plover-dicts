@@ -1,0 +1,68 @@
+from plover.translation import Translator
+from plover.steno import Stroke
+
+
+def _toggle_key(stroke: Stroke, key: str):
+    key_stroke = Stroke.from_steno(key)
+    if key in stroke.keys():
+        return stroke - key_stroke
+    else:
+        return stroke + key_stroke
+    
+def _remove_from_first_stroke(strokes: Stroke, key: str):
+    return [strokes[0] - Stroke.from_steno(key)] + strokes[1:]
+
+
+def _lookup_affixes(strokes: tuple[Stroke], translator: Translator) -> str:
+    # Verification
+    for stroke in strokes:
+        if "^-" not in stroke.keys():
+            raise KeyError
+    
+
+    # Translation without folding
+    strokes_without_carets = [stroke - Stroke.from_steno("^") for stroke in strokes]
+    result = translator.lookup(strokes_without_carets)
+    if result is not None:
+        return f"{{^}}{result}"
+
+    strokes_without_carets_asterisk_toggled = [_toggle_key(stroke - Stroke.from_steno("^"), "*") for stroke in strokes]
+    result = translator.lookup(strokes_without_carets_asterisk_toggled)
+    if result is not None:
+        return f"{result}{{^}}"
+    
+    if "#" in strokes_without_carets[0].keys():
+        result = translator.lookup(_remove_from_first_stroke(strokes_without_carets, "#"))
+        if result is not None:
+            return f"{{^}}-{result}"
+
+        result = translator.lookup(_remove_from_first_stroke(strokes_without_carets_asterisk_toggled, "#"))
+        if result is not None:
+            return f"{result}-{{^}}"
+
+    raise KeyError
+
+
+def _lookup_caps(strokes: tuple[Stroke], translator: Translator) -> str:
+    # Verification
+    if "#" not in strokes[0].keys():
+        raise KeyError
+    
+
+    # Translation without folding
+    result = translator.lookup([strokes[0] - Stroke.from_steno("#")] + strokes[1:])
+    if result is not None:
+        return f"{{~|}}{{-|}}{result}"
+        
+
+    raise KeyError
+
+
+#region Exports
+
+lookups = [
+    _lookup_affixes,
+    _lookup_caps,
+]
+
+#endregion
