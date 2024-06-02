@@ -51,13 +51,12 @@ This is not intended as a complete replacement for the built-in affix strokes, w
 `&` is used exclusively for entry to/exit from the orthographic spelling system.
 
 ## Dictionaries
-Located in `./user-dicts/` relative to Plover AppData directory
+Located in `./dicts/` relative to Plover AppData directory
 
 Dictionary | Desc
 -|-
 🡳 *`downloads/movement.modal`* | [Kaoffie/Aerick's movement modal dictionary](https://github.com/aerickt/steno-dictionaries/blob/main/movement.modal)
 `user.json` | The inner machinations of my mind
-`numberkey-proper-nouns-user.json` | User entries that experimentally use the `#` key for proper words and initialisms
 `underscore-symbols-and-text-commands.json` | Main list of entries that experimentally use the `_` key for symbols and text commands<br /><ul><li>`*G` suffix for Greek letter fingerspelling, `*PG` for uppercase</li></ul>
 `skeletal.json` | Brief-like skeletal entries that contain each syllable of the translated word(s)
 `numberkey-proper-nouns.json` | Main list of entries that use the `#` key for proper nouns and initialisms
@@ -76,6 +75,7 @@ Dictionary | Desc
 `spacing-and-capitalization.json` | Spacing and capitalization commands<br />`KPWAO` prefix. Adding `E` removes the space<br />Some right-hand side commands are partially based on navigation commands; upper row is for uppercase, lower row is for lowercase, symmetric keys for both rows is for spacing, other combinations of the rows for miscellaneous things<br /><ul><li>`-` Reset mode</li><li>`-PBLG` Reset casing mode</li><li>`-PBTS` Reset spacing mode</li><li>`-F` Capitaize last</li><li>`-R` Uncapitalize last</li><li>`-P` Capitalize next</li><li>`-B` Uncapitalize next</li><li>`-L` Caps next</li><li>`-PL` Caps mode</li><li>`-BG` Lower mode</li><li>`-FR` Retro add space</li><li>(`EFR` Retro remove space)</li><li>`-PB` Space next</li></ul>Additional modes:<ul><li>`-PLT` Camel mode</li><li>`*PLT` Pascal mode</li><li>`-BGS` Snake mode</li><li>`-PBLGS` Screaming snake mode</li><li>`-LT` Title mode</li><li>`-GS` Kebab mode</li><li>`-TS` No spaces mode</li></ul>
 `plover-recommended-dictionary-commands.json` | Recommended entries for commands from the [dictionary format](https://github.com/openstenoproject/plover/wiki/Dictionary-Format) wiki page
 `mistakes.json` | Misstrokes and bad habits
+`stkpw-z.json` | Entries that use the chord `STKPW-` to represent `z`
 `sk-ex.json` | Experimental entries that use various chords for some words that start with `ex`, depending on the consonant that follows it
 `skpw-inc_enc_anc.json` | Entries that use the chord `SKPW-` for words that start with `inc`, `enc`, `anc`
 `kpw-imp_emp_amp_imb_emb_amb.json` | Entries that use the chord `KPW-` for words that start with `imp`, `emp`, `amp`, `imb`, `emb`, `amb`
@@ -90,6 +90,7 @@ Dictionary | Desc
 🡳 *`downloads/jeff-phrasing/jeff-phrasing.json`* | [jthlim's phrasing dictionary](https://github.com/jthlim/jeff-phrasing)
 🡳 *`downloads/aerick-phrasing.json`* (DISABLED) | [Aerick's phrasing dictionary](https://github.com/aerickt/aerick-phrasing)
 🡴 *`.../plover_unicodepoint_dict/unicodepoint.py`* | Python dictionary that allows arbitrary unicode character input based on its codepoint
+🡴 *`./caret-and-number-folding.fold-py`* | Python folding dictionary that supports folding `^` and `#` for affixes according to the rules above
 🡴 *`.../plover_orth_dict/ipa_chording.py`* (DISABLED) | Python dictionary for chording IPA syllables
 🡴 *`.../plover_orth_dict/orth_chording.py`* (DISABLED) | Python dictionary for orthographic chording
 
