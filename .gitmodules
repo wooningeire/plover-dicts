@@ -1,0 +1,3 @@
+[submodule "plover-dicts.hidden"]
+	path = ./dicts/hidden/
+	url = https://github.com/wooningeire/plover-dicts.hidden.git
