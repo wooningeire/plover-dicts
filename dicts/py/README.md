@@ -1,7 +1,7 @@
-# Procedural control sequences
-Python dictionary for Plover which allows control sequences like `{#control_l(shift_l(a))}` to be stroked using rules similar to fingerspelling.
+Python dictionaries; these require the [`plover-python-dictionary`](https://pypi.org/project/plover-python-dictionary/) plugin, which can be installed from the Plugin Manager.
 
-`fingerspelling_control_seqs.py` is the dictionary file. It is a Python dictionary and thus requires the [`plover-python-dictionary`](https://pypi.org/project/plover-python-dictionary/) plugin, which can be installed from the Plugin Manager.
+# `control_seqs.py`: Procedural control sequences
+Allows control sequences like `{#control_l(shift_l(a))}` to be stroked using rules similar to fingerspelling.
 
 ## Objectives
 * Plover's default dictionaries only provide a small number of control sequences, which use a separate right-bank fingerspelling convention
