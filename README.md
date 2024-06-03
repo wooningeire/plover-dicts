@@ -85,7 +85,7 @@ Dictionary | Desc
 `./main.json` (DISABLED) | *Builtin*
 🡳 *`@/downloads/rh-numpad.json` | [Aerick's right-hand numpad dictionary](https://github.com/aerickt/steno-dictionaries/blob/main/rh-numpad.json)
 `@/py/control-seqs/fingerspelling_control_seqs.py` | Python dictionary that defines control sequence combinations, where letters are the accessed the same as through fingerspelling
-`@/py/unicode_entry.py`* | Python dictionary that allows arbitrary unicode character input based on its codepoint
+`@/py/unicode_entry.py` | Python dictionary that allows arbitrary unicode character input based on its codepoint
 `@/py/caret-and-number-folding.fold-py` | Python folding dictionary that supports folding `^` and `#` for affixes according to the rules above
 `@/py/orth-chording/ipa_chording.py` (DISABLED) | Python dictionary for chording IPA syllables
 `@/py/orth-chording/orth_chording.py` (DISABLED) | Python dictionary for orthographic chording
