@@ -1,0 +1,8 @@
+/.cache/
+/plugins/
+
+/*.log
+
+/commands.json
+/main.json
+/user.json
