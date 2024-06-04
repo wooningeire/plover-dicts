@@ -5,7 +5,7 @@
 Below are various additional experimental mechanics present here that have been added to supplement Plover theory.
 
 ### `#`
-`#` denotes proper nouns (and other parts of speech) and initialisms. It is usually added to the first stroke that comprises the word or phrase. Many of the entries that use this mechanic are found in `numberkey-proper-nouns.json` and `numberkey-proper-nouns-user.json`.
+`#` denotes proper nouns (and other parts of speech) and initialisms. It is usually added to the first stroke that comprises the word or phrase. Many of the entries that use this mechanic are found in `numberkey-proper-nouns.json`.
 * *[Potential change] Require the `#` modifier for each stroke that starts a new word in the proper noun*
   * *[Unclear] When to use `#` for pascal-case proper nouns*
 

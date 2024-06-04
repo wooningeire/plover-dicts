@@ -1,68 +1,24 @@
-from plover.translation import Translator
-from plover.steno import Stroke
+def init(f, FoldingRules):
+    return FoldingRules([
+        f.when(f.last_stroke.folds("-GS", "-GZ")).then(f.append_to_translation(" {^ings}")),
+        f.when(f.last_stroke.folds("-G", "_-G").folds_toggled("*")).then(f.unfold_suffix),
 
+        f.when(f.all_strokes.fold("^")).then(f.prepend_to_translation("{^}"))
+            .unless_also(
+                f.when(f.first_stroke.folds("_")).then(f.prepend_to_translation("{^~|-^}")),
+                f.when(f.all_strokes.fold("+")).then(f.append_to_translation("{^}"))
+                    .unless_also(
+                        f.when(f.last_stroke.folds("_")).then(f.append_to_translation("-{^}")),
+                    ),
+            ),
 
-def _toggle_key(stroke: Stroke, key: str):
-    key_stroke = Stroke.from_steno(key)
-    if key in stroke.keys():
-        return stroke - key_stroke
-    else:
-        return stroke + key_stroke
-    
-def _remove_from_first_stroke(strokes: Stroke, key: str):
-    return [strokes[0] - Stroke.from_steno(key)] + strokes[1:]
+        f.when(f.first_stroke.folds("#")).then(f.prepend_to_translation("{-|}")),
 
-
-def _lookup_affixes(strokes: tuple[Stroke], translator: Translator) -> str:
-    # Verification
-    for stroke in strokes:
-        if "^-" not in stroke.keys():
-            raise KeyError
-    
-
-    # Translation without folding
-    strokes_without_carets = [stroke - Stroke.from_steno("^") for stroke in strokes]
-    result = translator.lookup(strokes_without_carets)
-    if result is not None:
-        return f"{{^}}{result}"
-
-    strokes_without_carets_asterisk_toggled = [_toggle_key(stroke - Stroke.from_steno("^"), "*") for stroke in strokes]
-    result = translator.lookup(strokes_without_carets_asterisk_toggled)
-    if result is not None:
-        return f"{result}{{^}}"
-    
-    if "#" in strokes_without_carets[0].keys():
-        result = translator.lookup(_remove_from_first_stroke(strokes_without_carets, "#"))
-        if result is not None:
-            return f"{{^}}-{result}"
-
-        result = translator.lookup(_remove_from_first_stroke(strokes_without_carets_asterisk_toggled, "#"))
-        if result is not None:
-            return f"{result}-{{^}}"
-
-    raise KeyError
-
-
-def _lookup_caps(strokes: tuple[Stroke], translator: Translator) -> str:
-    # Verification
-    if "#" not in strokes[0].keys():
-        raise KeyError
-    
-
-    # Translation without folding
-    result = translator.lookup([strokes[0] - Stroke.from_steno("#")] + strokes[1:])
-    if result is not None:
-        return f"{{-|}}{result}"
-        
-
-    raise KeyError
-
-
-#region Exports
-
-lookups = [
-    _lookup_affixes,
-    _lookup_caps,
-]
-
-#endregion
+        # f.when(f.first_stroke.folds("STK")).then(
+        #     f.relookup_after(f.prepending_stroke("TKEUS")),
+        #     f.relookup_after(f.prepending_onto_outline("TKEU/S")),
+        #     f.modify_translation(lambda translation: f"{{dis^}} {translation}"),
+        # ),
+        # f.when(f.last_stroke.folds("-LGS"))(f.relookup_after(f.appending_stroke("HRAEUGS"))),
+        # f.when(f.last_stroke.folds("-FRPBGS"))(f.relookup_after(f.appending_onto_outline("-PL/TPHAEUGS"))),
+    ])
