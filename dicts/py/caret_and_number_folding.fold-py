@@ -1,24 +1,117 @@
-def init(f, FoldingRules):
-    return FoldingRules([
-        f.when(f.last_stroke.folds("-GS", "-GZ")).then(f.append_to_translation(" {^ings}")),
-        f.when(f.last_stroke.folds("-G", "_-G").folds_toggled("*")).then(f.unfold_suffix),
+from plover_custom_folding import f
 
-        f.when(f.all_strokes.fold("^")).then(f.prepend_to_translation("{^}"))
-            .unless_also(
-                f.when(f.first_stroke.folds("_")).then(f.prepend_to_translation("{^~|-^}")),
-                f.when(f.all_strokes.fold("+")).then(f.append_to_translation("{^}"))
-                    .unless_also(
-                        f.when(f.last_stroke.folds("_")).then(f.append_to_translation("-{^}")),
-                    ),
+rules = [
+    f.when(f.all_strokes.fold("^")).then(f.prefix_translation("{^~|^}"))
+        .unless_also(
+            f.when(f.first_stroke.folds("_")).then(f.prefix_translation("{^~|-^}")),
+            f.when(f.all_strokes.fold("+")).then(f.suffix_translation("{^}"))
+                .unless_also(
+                    f.when(f.last_stroke.folds("_")).then(f.suffix_translation("-{^}")),
+                ),
+        ),
+
+    f.when(f.first_stroke.folds("#")).then(f.prefix_translation("{-|}")),
+
+    f.when(f.first_stroke.folds("&")).then(
+        f.prefix_outline("A/"),
+        f.prefix_outline("O/"),
+        f.prefix_outline("OE/"),
+        f.prefix_outline("AOU/"),
+    ).or_also(
+        f.when(f.first_stroke.folds("S")).then(
+            f.prefix_outline("AS/"),
+            f.prefix_outline("OS/"),
+            f.prefix_outline("OES/"),
+            f.prefix_outline("AOUS/"),
+        ),
+        f.when(f.first_stroke.folds("SK")).then(
+            f.prefix_outline("ABG/S"),
+            f.prefix_outline("ABGS/"),
+            f.prefix_outline("OBG/S"),
+            f.prefix_outline("OBGS/"),
+        ),
+        f.when(f.first_stroke.folds("R")).then(
+            f.prefix_outline("OR/"),
+            f.prefix_outline("AOUR/"),
+        ),
+    ).unless_also(
+        f.when(f.first_stroke.folds("*")).then(
+            f.prefix_outline("E/"),
+            f.prefix_outline("AOE/"),
+        ).or_also(
+            f.when(f.first_stroke.folds("S")).then(
+                f.prefix_outline("ES/"),
             ),
+            f.when(f.first_stroke.folds("TPH")).then(
+                f.prefix_outline("EPB/"),
+                f.prefix_outline("EPB/TPH"),
+            ),
+            f.when(f.first_stroke.folds("HR")).then(
+                f.prefix_outline("EL/"),
+                f.prefix_outline("EL/HR"),
+            ),
+            f.when(f.first_stroke.folds("PH")).then(
+                f.prefix_outline("EUPL/"),
+                f.prefix_outline("EUPL/PH"),
+            ),
+            f.when(f.first_stroke.folds("SK")).then(
+                f.prefix_outline("EBG/S"),
+                f.prefix_outline("EBGS/"),
+                f.prefix_translation("{ex^} "),
+            ),
+            f.when(f.first_stroke.folds("KP")).then(f.prefix_outline("EBGS/")),
+            f.when(f.first_stroke.folds("R")).then(
+                f.prefix_outline("ER/R"),
+            ),
+        ).unless_also(
+            f.when(f.first_stroke.folds("_")).and_also(
+                f.when(f.first_stroke.folds("TPH")).then(
+                    f.prefix_outline("EUPB/TPH"),
+                    f.prefix_outline("EUPB/"),
+                ),
+                f.when(f.first_stroke.folds("HR")).then(
+                    f.prefix_outline("EUL/HR"),
+                    f.prefix_outline("EUL/"),
+                ),
+                f.when(f.first_stroke.folds("PH")).then(
+                    f.prefix_outline("EUPL/PH"),
+                    f.prefix_outline("EUPL/"),
+                ),
+            ),
+        ),
+    ),
+    
+    f.when(f.last_stroke.folds("+")).then(
+        f.suffix_outline("/KWREU"),
+        f.suffix_translation(" {^y}"),
+    ).unless_also(
+        f.when(f.last_stroke.folds("-S")).then(f.suffix_outline("/SEU")),
+        f.when(f.last_stroke.folds("-BG")).then(
+            f.suffix_outline("/KEU"),
+            f.suffix_outline("/KAOE"),
+        ),
+        f.when(f.last_stroke.folds("*PBG")).then(
+            f.suffix_outline("-PB/KEU"),
+            f.suffix_outline("-PB/KAOE"),
+        ),
+    ),
 
-        f.when(f.first_stroke.folds("#")).then(f.prepend_to_translation("{-|}")),
 
-        # f.when(f.first_stroke.folds("STK")).then(
-        #     f.relookup_after(f.prepending_stroke("TKEUS")),
-        #     f.relookup_after(f.prepending_onto_outline("TKEU/S")),
-        #     f.modify_translation(lambda translation: f"{{dis^}} {translation}"),
-        # ),
-        # f.when(f.last_stroke.folds("-LGS"))(f.relookup_after(f.appending_stroke("HRAEUGS"))),
-        # f.when(f.last_stroke.folds("-FRPBGS"))(f.relookup_after(f.appending_onto_outline("-PL/TPHAEUGS"))),
-    ])
+    f.when(f.last_stroke.folds("-Z", "-S")).then(f.unfold_suffix),
+    f.when(f.last_stroke.folds("-D", "-G")).then(f.unfold_suffix),
+    f.when(
+        f.last_stroke.folds("-R"),
+        f.last_stroke.folds("-R").toggles("*"),
+    ).then(
+        f.suffix_outline("/*ER"),
+        f.suffix_outline("/O*R"),
+        f.suffix_translation(" {^er}"),
+    ),
+    f.when(f.last_stroke.folds("-L")).then(
+        f.suffix_outline("/HREU"),
+        f.suffix_translation(" {^ly}"),
+    ),
+
+    f.when(f.last_stroke.folds("*PLG")).then(f.suffix_outline("-PL").suffix_translation(" {^ic}")),
+    f.when(f.last_stroke.folds("*PBG")).then(f.suffix_outline("-PB").suffix_translation(" {^ic}")),
+]
