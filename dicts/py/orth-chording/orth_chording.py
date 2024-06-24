@@ -254,12 +254,15 @@ _SPECIAL_ENTRIES = {
     "KPA": "{}{-|}",
     "KPA*": "{^}{-|}",
     "SKW-T": "{^}'{^}",
-    "TP-PL": "{.}",
-    "KW-BG": "{,}",
-    "TP-BG": "{!}",
-    "KW-PL": "{?}",
-    "H-F": "{?}",
     "H-PB": "{^}-{^}",
+    "TP-PL": "{.}{plover:end_solo_dict}",
+    "KW-BG": "{,}{plover:end_solo_dict}",
+    "TP-BG": "{!}{plover:end_solo_dict}",
+    "KW-PL": "{?}{plover:end_solo_dict}",
+    "H-F": "{?}{plover:end_solo_dict}",
+    "R-R": "{^~|\n^}{plover:end_solo_dict}",
+    "R*R": "{#return}{^}{plover:end_solo_dict}",
+    "R*RP": "{#shift_l(return)}{^}{plover:end_solo_dict}",
 }
 
 
@@ -282,7 +285,6 @@ elif "^-" in KEYS and "_" in KEYS and "&-" in KEYS:
     _CHORDS.update({
         # MODIFIERS
 
-        "^": ("", (Modifier.CONNECT_BEFORE,)),
         "_": ("", (Modifier.WORD_BOUNDARY,)),
         "&": ("", (Modifier.EXIT,)),
 

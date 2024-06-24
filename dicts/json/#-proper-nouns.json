@@ -223,6 +223,7 @@
 "#HA/ROELD": "Harold",
 "#HAOU/PWERT": "Hubert",
 "#HAEU/ROELD": "Harold",
+"#HAFRL/TOPB": "Hamilton",
 "#HAPL/TOEPB": "Hamilton",
 "#HAPL/TOPB": "Hamilton",
 "#HEUL/TKA": "Hilda",
@@ -245,6 +246,7 @@
 "#RETD": "Reddit",
 "#RURB/KWRA": "Russia",
 "#RUS/KWRA": "Russia",
+"#R-P": "RP",
 "#A/TKAPL": "Adam",
 "#A/TKOE/PWAOE": "Adobe",
 "#A/PHAOEL/KWRA": "Amelia",
@@ -308,5 +310,6 @@
 "#EU/KWRAPB": "Ian",
 "#ERBG": "Eric",
 "#UFB": "USB",
-"#-PBG": "Ng"
+"#-PBG": "Ng",
+"TKWORBG": "dvorak"
 }

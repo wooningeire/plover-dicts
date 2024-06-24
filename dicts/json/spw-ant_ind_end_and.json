@@ -15,9 +15,11 @@
 "SPWHREUPBG": "inkling",
 "SPWHOLG": "anthology",
 "SPWHEPL": "anthem",
+"SPWROPL/TKA": "andromeda",
 "SPWAOE": "ante",
 "SPWAOEUBGT": "indict",
 "SPWAOEUT": "indict",
+"SPWAOER": "interior",
 "SPWAOED": "antecedent",
 "SPWAOED/EPBT": "antecedent",
 "SPWAOUFD": "induced",
@@ -34,5 +36,6 @@
 "SPWEUS/PAEUT": "anticipate",
 "SPWEFR": "endeavor",
 "SPWEPB/KWRA": "antenna",
-"SPWEBGS": "index"
+"SPWEBGS": "index",
+"SPWULG": "indulge"
 }

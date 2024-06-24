@@ -74,6 +74,9 @@ Dictionary | Desc
 `@/json/^-affixes.json` | Main list of entries that experimentally use the `^` key for affixes and compound words
 `@/json/_-symbols-and-text-commands.json` | Main list of entries that experimentally use the `_` key for symbols and text commands<br /><ul><li>`*G` suffix for Greek letter fingerspelling, `*PG` for uppercase</li></ul>
 `@/json/#-proper-nouns.json` | Main list of entries that use the `#` key for proper nouns and initialisms
+`@/json/-frlg-h.json` | Entries that use the chord `-FRLG` to represent right-hand `h`
+`@/json/-fb-v.json` | Entries that use the chord `-FB` to represent right-hand `v`
+`@/json/kpw-c.json` | Entries that use the chord `KPW-` to represent `c` when it makes an /s/ sound and conflicts with `s`
 `@/json/stkpw-z.json` | Entries that use the chord `STKPW-` to represent `z`
 `@/json/skw-ex.json` | Experimental entries that use various chords for some words that start with `ex`, depending on the consonant that follows it
 `@/json/skpw-inc_enc_anc.json` | Entries that use the chord `SKPW-` for words that start with `inc`, `enc`, `anc`
