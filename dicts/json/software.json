@@ -1,4 +1,5 @@
 {
+"#_AOEFL": "{^}elif",
 "#STPHO*R": "XNOR",
 "#STPAER": "Safari",
 "#STPOED": "VSCode",
@@ -24,7 +25,6 @@
 "#TKPWEUT/HRAB": "GitLab",
 "#TKPW-PL": "GPL",
 "#TKPW-L": "gl",
-"OBG/TRAOE": "octree",
 "#TKPW-L/S-L": "GLSL",
 "#TKAF": "DFA",
 "#TK-FS": "DFS",
@@ -95,5 +95,6 @@
 "HREBGS/AOEPL": "lexeme",
 "HARPBL": "handler",
 "AOEU/TKEPBT": "ident",
-"A*LGT": "allocate"
+"A*LGT": "allocate",
+"OBG/TRAOE": "octree"
 }

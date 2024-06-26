@@ -4,6 +4,7 @@ _CHORD_KEYMAP = {
     "A": "a",
     "PW": "b",
     "KR": "c",
+    "KPW": "c",
     "TK": "d",
     "E": "e",
     "TP": "f",
