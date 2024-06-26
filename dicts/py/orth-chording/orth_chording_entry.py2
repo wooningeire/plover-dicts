@@ -1,0 +1,21 @@
+from pathlib import Path
+
+from plover.steno import Stroke
+
+from plover_custom_folding import exec_module_from_filepath
+
+_orth_chording = exec_module_from_filepath(str(Path(__file__).parent / "orth_chording.py"))
+LONGEST_KEY = _orth_chording.LONGEST_KEY
+_main_lookup = _orth_chording.lookup
+
+
+_ENTRY_SUBSTROKE = Stroke.from_steno("&")
+
+def lookup(strokes: tuple[Stroke]):
+    stroke = strokes[0]
+    if _ENTRY_SUBSTROKE not in stroke:
+        return None
+    
+    stroke -= _ENTRY_SUBSTROKE
+
+    return  f"{_main_lookup((stroke.rtfcre,))}{{plover:solo_dict:+orth_chording.py,+commands.json,+plover_recommended_dictionary_commands.json,+control_seqs.py}}"

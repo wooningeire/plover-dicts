@@ -73,8 +73,6 @@ rules = [
         ),
     ),
 
-    f.when(f.last_stroke.folds("-Z", "-S")).then(f.unfold_suffix),
-    f.when(f.last_stroke.folds("-D", "-G")).then(f.unfold_suffix),
     f.when(f.last_stroke.folds("+")).then(
         f.suffix_outline("/KWREU"),
         f.suffix_translation(" {^y}"),
@@ -95,6 +93,8 @@ rules = [
             f.suffix_outline("-PB/KAOE"),
         ),
     ),
+    f.when(f.last_stroke.folds("-Z", "-S")).then(f.unfold_suffix),
+    f.when(f.last_stroke.folds("-D", "-G")).then(f.unfold_suffix),
     f.when(
         f.last_stroke.folds("-R"),
         f.last_stroke.folds("-R").toggles("*"),

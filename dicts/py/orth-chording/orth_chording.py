@@ -8,7 +8,7 @@ from enum import Enum
 
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    KEYS: tuple[str] = ()
+    KEYS: tuple[str, ...] = ()
 
 class Modifier(Enum):
     WORD_BOUNDARY = 0

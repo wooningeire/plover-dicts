@@ -92,6 +92,7 @@ Dictionary | Desc
 `@/py/caret-and-number-folding.fold-py` | Python folding dictionary that supports folding `^` and `#` for affixes according to the rules above
 `@/py/orth-chording/ipa_chording.py` (DISABLED) | Python dictionary for chording IPA syllables
 `@/py/orth-chording/orth_chording.py` (DISABLED) | Python dictionary for orthographic chording
+`@/py/orth-chording/orth_chording_entry.py2` (DISABLED) | Python dictionary for entering the orthographic chording mode by folding in a substroke
 
 🡳 indicates an external downloaded dictionary.
 
