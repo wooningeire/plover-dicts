@@ -51,6 +51,7 @@ _CHORD_KEYMAP = {
     "KWHR": "equals",
     "SH": "minus",
     "KH": "asciitilde", # backtick ("grave" will not work)
+    "OEU": "slash",
 
     "#R-R": "f1",
     "#W-R": "f2",
@@ -116,7 +117,7 @@ _NO_SPACE_SUBSTROKE = Stroke.from_steno("-F")
 LONGEST_KEY = 1
 
 
-def lookup(key: tuple[str]) -> str:
+def lookup(key: tuple[str, ...]) -> str:
     stroke: Stroke = Stroke.from_steno(key[0])
 
     if _CONTROL_IDENTIFIER_SUBSTROKE not in stroke: raise KeyError

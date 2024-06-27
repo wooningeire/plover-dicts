@@ -10,12 +10,17 @@ _main_lookup = _orth_chording.lookup
 
 
 _ENTRY_SUBSTROKE = Stroke.from_steno("&")
+_EXIT_SUBSTROKE = Stroke.from_steno("_")
 
-def lookup(strokes: tuple[Stroke]):
+def lookup(strokes: tuple[Stroke, ...]):
     stroke = strokes[0]
     if _ENTRY_SUBSTROKE not in stroke:
         return None
     
     stroke -= _ENTRY_SUBSTROKE
 
-    return  f"{_main_lookup((stroke.rtfcre,))}{{plover:solo_dict:+orth_chording.py,+commands.json,+plover_recommended_dictionary_commands.json,+control_seqs.py}}"
+    # if _EXIT_SUBSTROKE in stroke:
+    #     stroke -= _EXIT_SUBSTROKE
+    #     return f"{{}}{_main_lookup((stroke.rtfcre,))}"
+    
+    return f"{_main_lookup((stroke.rtfcre,))}{{plover:solo_dict:+orth_chording.py,+commands.json,+plover_recommended_dictionary_commands.json,+control_seqs.py}}"

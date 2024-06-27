@@ -12,7 +12,7 @@ rules = [
 
     f.when(f.first_stroke.folds("#")).then(f.prefix_translation("{-|}")),
 
-    f.when(f.first_stroke.folds("&")).then(
+    f.when(f.first_stroke.folds("@")).then(
         f.prefix_outline("A/"),
         f.prefix_outline("E/"),
         f.prefix_outline("AOE/"),

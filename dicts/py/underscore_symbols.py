@@ -173,7 +173,7 @@ _ASTERISK_SUBSTROKE = Stroke.from_steno("*")
 LONGEST_KEY = 1
 
 
-def lookup(key: tuple[str]) -> str:
+def lookup(key: tuple[str, ...]) -> str:
     stroke: Stroke = Stroke.from_steno(key[0])
 
     if _IDENTIFIER_SUBSTROKE not in stroke: raise KeyError

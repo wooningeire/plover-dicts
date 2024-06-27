@@ -4,8 +4,8 @@ LONGEST_KEY = 8
 
 _ENTRY_STROKE = Stroke.from_steno("TKWHR")
 _EXIT_CHORD = Stroke.from_steno("R")
-_LEFT_SPACE_CHORD = Stroke.from_steno("A")
-_RIGHT_SPACE_CHORD = Stroke.from_steno("O")
+_LEFT_SPACE_CHORD = Stroke.from_steno("E")
+_RIGHT_SPACE_CHORD = Stroke.from_steno("U")
 
 _key_values = {
     "-R": 1 << 3,
@@ -15,7 +15,7 @@ _key_values = {
     "-U": 0,
 }
 
-def lookup(strokes_steno: tuple[str]):
+def lookup(strokes_steno: tuple[str, ...]):
     entry_stroke = Stroke.from_steno(strokes_steno[0])
     if entry_stroke != _ENTRY_STROKE:
         raise KeyError
@@ -67,7 +67,7 @@ def lookup(strokes_steno: tuple[str]):
         return f"[u+{codepoint:x}]"
 
     
-    left_control = "{}" if left_space else "{^}"
-    right_control = "{}" if right_space else "{^}"
+    left_control = "{^ ^}" if left_space else "{^}"
+    right_control = "{^ ^}" if right_space else "{^}"
 
     return f"{left_control}{chr(codepoint)}{right_control}"

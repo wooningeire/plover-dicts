@@ -341,7 +341,7 @@ _UNDO_STROKE = "*"
 LONGEST_KEY = 1
 
 
-def lookup(strokes_steno: tuple[str]) -> str:
+def lookup(strokes_steno: tuple[str, ...]) -> str:
     steno = strokes_steno[0]
 
     if steno == _UNDO_STROKE: raise KeyError
@@ -353,7 +353,7 @@ def lookup(strokes_steno: tuple[str]) -> str:
     out = ""
     modifiers: set[Modifier] = set()
 
-    keys: tuple[str] = Stroke.from_steno(strokes_steno[0]).keys()
+    keys: tuple[str, ...] = Stroke.from_steno(strokes_steno[0]).keys()
 
     chord_start_index = 0
     while chord_start_index < len(keys):
