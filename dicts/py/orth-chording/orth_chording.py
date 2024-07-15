@@ -10,6 +10,9 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     KEYS: tuple[str, ...] = ()
 
+ENTRY_COMMAND = "{plover:solo_dict:+orth_chording.py,+commands.json,+plover_recommended_dictionary_commands.json,+control_seqs.py}"
+_UNDO_COMMAND = "{plover:undo_with:\\{plover:solo_dict:+orth_chording.py,+commands.json,+plover_recommended_dictionary_commands.json,+control_seqs.py\\}}"
+
 class Modifier(Enum):
     WORD_BOUNDARY = 0
     CAPS = 1
@@ -255,14 +258,14 @@ _SPECIAL_ENTRIES = {
     "KPA*": "{^}{-|}",
     "SKW-T": "{^}'{^}",
     "H-PB": "{^}-{^}",
-    "TP-PL": "{.}{plover:end_solo_dict}",
-    "KW-BG": "{,}{plover:end_solo_dict}",
-    "TP-BG": "{!}{plover:end_solo_dict}",
-    "KW-PL": "{?}{plover:end_solo_dict}",
-    "H-F": "{?}{plover:end_solo_dict}",
-    "R-R": "{^~|\n^}{plover:end_solo_dict}",
-    "R*R": "{#return}{^}{plover:end_solo_dict}",
-    "R*RP": "{#shift_l(return)}{^}{plover:end_solo_dict}",
+    "TP-PL": "{.}{plover:end_solo_dict}" + _UNDO_COMMAND,
+    "KW-BG": "{,}{plover:end_solo_dict}" + _UNDO_COMMAND,
+    "TP-BG": "{!}{plover:end_solo_dict}" + _UNDO_COMMAND,
+    "KW-PL": "{?}{plover:end_solo_dict}" + _UNDO_COMMAND,
+    "H-F": "{?}{plover:end_solo_dict}" + _UNDO_COMMAND,
+    "R-R": "{^~|\n^}{plover:end_solo_dict}" + _UNDO_COMMAND,
+    "R*R": "{#return}{^}{plover:end_solo_dict}" + _UNDO_COMMAND,
+    "R*RP": "{#shift_l(return)}{^}{plover:end_solo_dict}" + _UNDO_COMMAND,
 }
 
 
@@ -277,7 +280,7 @@ if "^-" in KEYS and "_" not in KEYS and "&-" not in KEYS:
     })
 
     _SPECIAL_ENTRIES.update({
-        "-TSDZ": "{#}{plover:end_solo_dict}",
+        "-TSDZ": "{#}{plover:end_solo_dict}" + _UNDO_COMMAND,
     })
 
 # For custom extended stenotype
@@ -308,14 +311,14 @@ elif "^-" in KEYS and "_" in KEYS and "&-" in KEYS:
     })
 
     _SPECIAL_ENTRIES.update({
-        "&": "{#}{plover:end_solo_dict}",
+        "&": "{#}{plover:end_solo_dict}" + _UNDO_COMMAND,
         "_": "{^ ^}",
     })
 
 # For regular English stenotype and other systems
 else:
     _SPECIAL_ENTRIES.update({
-        "-TSDZ": "{#}{plover:end_solo_dict}",
+        "-TSDZ": "{#}{plover:end_solo_dict}" + _UNDO_COMMAND,
     })
 
 
@@ -388,7 +391,7 @@ def lookup(strokes_steno: tuple[str, ...]) -> str:
     if Modifier.CONNECT_BEFORE in modifiers:
         translation = "{^}" + translation
     if Modifier.EXIT in modifiers:
-        translation += "{plover:end_solo_dict}"
+        translation += "{plover:end_solo_dict}" + _UNDO_COMMAND
     if Modifier.CONNECT_AFTER in modifiers:
         translation += "{^}"
 

@@ -82,6 +82,14 @@ _MAIN_SYMBOL_KEYMAP = {
     "R*G": ".)",
 
     "-RG": "),",
+
+    "K-G": "()",
+    "W-B": r"\{\}",
+    "KW-BG": "[]",
+    "KP-PG": "<>",
+
+    "K-T": "(\"",
+    "-GT": "\")",
     #endregion
 
 

@@ -1,4 +1,6 @@
 {
+"#": "{plover:undoable}{~|}{-|}",
+"#^": "{plover:undoable}{^}{-|}",
 "#^+TKPW/WEPB": "Gwen",
 "#STKEPL/PWER": "December",
 "#STE/HRA": "Stella",
@@ -310,6 +312,11 @@
 "#EU/KWRAPB": "Ian",
 "#ERBG": "Eric",
 "#UFB": "USB",
+"#URL": "URL",
 "#-PBG": "Ng",
-"TKWORBG": "dvorak"
+"TKPAOLG": "google",
+"TKWORBG": "dvorak",
+"TWEURT": "twitter",
+"RETD": "reddit",
+"URL": "url"
 }

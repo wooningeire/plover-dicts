@@ -5,6 +5,8 @@ from typing import List, Tuple
 KEYS = [
     ("#", "num", "num_n"),
     ("_", "und", "und_n"),
+    ("@", "at", "at_n"),
+    ("$", "dollar", "dollar_n"),
     ("&-", "amp", "amp_n"),
     ("^-", "lcaret", "lcaret_n"),
     ("+-", "lplus", "lplus_n"),
@@ -29,7 +31,7 @@ KEYS = [
     ("-T", "rt", "rt_n"),
     ("-S", "rs", "rs_n"),
     ("-D", "rd", "rd_n"),
-    ("-Z", "rz", "rz_n")
+    ("-Z", "rz", "rz_n"),
 ]
 
 

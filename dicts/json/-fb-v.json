@@ -5,6 +5,7 @@
 "TPHAFB": "nav",
 "TPHAFB/TKPWAEUGS": "navigation",
 "TPHAFBGS": "navigation",
+"PAEUFB": "pave",
 "WA*EUFB": "waive",
 "WAEUFB": "wave",
 "HRAOEUFB": "live",
@@ -12,5 +13,6 @@
 "HAFB": "halve",
 "HAFBL": "halve",
 "HAL/^-FB": "halve",
+"REFB": "rev",
 "REFB/REPBT": "reverent"
 }

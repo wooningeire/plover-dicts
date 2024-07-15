@@ -7,6 +7,7 @@ from plover_custom_folding import exec_module_from_filepath
 _orth_chording = exec_module_from_filepath(str(Path(__file__).parent / "orth_chording.py"))
 LONGEST_KEY = _orth_chording.LONGEST_KEY
 _main_lookup = _orth_chording.lookup
+ENTRY_COMMAND = _orth_chording.ENTRY_COMMAND
 
 
 _ENTRY_SUBSTROKE = Stroke.from_steno("&")
@@ -23,4 +24,7 @@ def lookup(strokes: tuple[Stroke, ...]):
     #     stroke -= _EXIT_SUBSTROKE
     #     return f"{{}}{_main_lookup((stroke.rtfcre,))}"
     
-    return f"{_main_lookup((stroke.rtfcre,))}{{plover:solo_dict:+orth_chording.py,+commands.json,+plover_recommended_dictionary_commands.json,+control_seqs.py}}"
+    try:
+        return f"{{plover:undo_with:\\{{plover:end_solo_dict\\}}}}{_main_lookup((stroke.rtfcre,))}{ENTRY_COMMAND}"
+    except KeyError:
+        return None

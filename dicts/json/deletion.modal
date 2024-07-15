@@ -1,0 +1,53 @@
+{
+    "exclude_entry": false,
+    "exit_on_mismatch": true,
+    "exit_on_match": false,
+    "ignore_folding": true,
+
+    "entry": {
+        "PWH-R": "{#Backspace}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-RB": "{#Control(Backspace)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-RG": "{#Control(Delete)}{#Control(Backspace)}{#Left}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-BG": "{#Control(Delete)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-G": "{#Delete}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-RS": "{#Backspace}{#Backspace}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-RBS": "{#Control(Backspace)}{#Control(Backspace)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-RGS": "{#Control(Delete)}{#Control(Delete)}{#Control(Backspace)}{#Control(Backspace)}{#Left}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-BGS": "{#Control(Delete)}{#Control(Delete)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-GS": "{#Delete}{#Delete}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-RT": "{#Backspace}{#Backspace}{#Backspace}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-RBT": "{#Control(Backspace)}{#Control(Backspace)}{#Control(Backspace)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-RGT": "{#Control(Delete)}{#Control(Delete)}{#Control(Delete)}{#Control(Backspace)}{#Control(Backspace)}{#Control(Backspace)}{#Left}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-BGT": "{#Control(Delete)}{#Control(Delete)}{#Control(Delete)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-GT": "{#Delete}{#Delete}{#Delete}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-RTS": "{#Backspace}{#Backspace}{#Backspace}{#Backspace}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-RBTS": "{#Control(Backspace)}{#Control(Backspace)}{#Control(Backspace)}{#Control(Backspace)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-RGTS": "{#Control(Delete)}{#Control(Delete)}{#Control(Delete)}{#Control(Delete)}{#Control(Backspace)}{#Control(Backspace)}{#Control(Backspace)}{#Control(Backspace)}{#Left}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-BGTS": "{#Control(Delete)}{#Control(Delete)}{#Control(Delete)}{#Control(Delete)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "PWH-GTS": "{#Delete}{#Delete}{#Delete}{#Delete}{^}{plover:undo_with:\\{#control_l(z)\\}}"
+    },
+
+    "dict": {
+        "*": "",
+        "-R": "{#Backspace}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-RB": "{#Control(Backspace)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-RG": "{#Control(Delete)}{#Control(Backspace)}{#Left}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-BG": "{#Control(Delete)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-G": "{#Delete}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-RS": "{#Backspace}{#Backspace}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-RBS": "{#Control(Backspace)}{#Control(Backspace)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-RGS": "{#Control(Delete)}{#Control(Delete)}{#Control(Backspace)}{#Control(Backspace)}{#Left}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-BGS": "{#Control(Delete)}{#Control(Delete)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-GS": "{#Delete}{#Delete}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-RT": "{#Backspace}{#Backspace}{#Backspace}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-RBT": "{#Control(Backspace)}{#Control(Backspace)}{#Control(Backspace)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-RGT": "{#Control(Delete)}{#Control(Delete)}{#Control(Delete)}{#Control(Backspace)}{#Control(Backspace)}{#Control(Backspace)}{#Left}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-BGT": "{#Control(Delete)}{#Control(Delete)}{#Control(Delete)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-GT": "{#Delete}{#Delete}{#Delete}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-RTS": "{#Backspace}{#Backspace}{#Backspace}{#Backspace}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-RBTS": "{#Control(Backspace)}{#Control(Backspace)}{#Control(Backspace)}{#Control(Backspace)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-RGTS": "{#Control(Delete)}{#Control(Delete)}{#Control(Delete)}{#Control(Delete)}{#Control(Backspace)}{#Control(Backspace)}{#Control(Backspace)}{#Control(Backspace)}{#Left}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-BGTS": "{#Control(Delete)}{#Control(Delete)}{#Control(Delete)}{#Control(Delete)}{^}{plover:undo_with:\\{#control_l(z)\\}}",
+        "-GTS": "{#Delete}{#Delete}{#Delete}{#Delete}{^}{plover:undo_with:\\{#control_l(z)\\}}"
+    }
+}

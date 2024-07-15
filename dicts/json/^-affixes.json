@@ -298,6 +298,7 @@
 "^SREUL": "{^}ville",
 "^SRERS": "{^}verse",
 "^SAO": "zoo{^}",
+"^SAOE/^TKEPBT": "{^}cedent",
 "^SAOEUBG/^-L": "cycle",
 "^SAOEUT": "{^}sight",
 "^SAOEUD": "{^}side",
@@ -352,7 +353,6 @@
 "^KWR": "{^y}",
 "^KWRA": "{^ia}",
 "^KWRAOE": "{^ey}",
-"^KWRARD": "{^}yard",
 "^KWROE": "{^io}",
 "^KWROPB": "{^ion}",
 "^KWREFT": "{^iest}",
@@ -361,10 +361,7 @@
 "^KRAOEUD": "{^}cide",
 "^KAL": "{^}cal",
 "^KEU": "{^ky}",
-"^KEUPB": "{^}kin",
 "^K-L": "{^}cle",
-"^PWOEUD": "{^}body",
-"^PWOED": "{^}body",
 "^PWEU": "{^by}",
 "^PHOUS": "{^}mous",
 "^PHOFR": "{^}morph",
@@ -492,5 +489,6 @@
 "HRAOEG/^AL": "legal",
 "HREBGS/^KAL": "lexical",
 "HREBGS/^ER": "lexer",
+"OEBG/^-R": "ochre",
 "OEG/^-R": "ogre"
 }

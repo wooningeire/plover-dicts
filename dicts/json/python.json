@@ -1,0 +1,15 @@
+{
+"#_STPHO*PB": "{}is None:\n{^}",
+"#_STPHO*PBT": "{}is not None:\n{^}",
+"#_STPHOPB": "{}is None",
+"#_STPHOPBT": "{}is not None",
+"#_ST-R": "str",
+"#_TK*EFLGT": "{>}defaultdict",
+"#_TKEF": "{^}def",
+"#_TPHEUT": "__init__",
+"#_TAOURP": "{>}tuple[str, ...]",
+"#_KWAUT": "= auto()",
+"#_AOEFL": "{^}elif",
+"_R-RB": "{^}._{^}",
+"_+R-RB": "{^}.__{^}"
+}
