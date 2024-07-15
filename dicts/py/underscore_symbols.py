@@ -121,42 +121,43 @@ _MAIN_SYMBOL_KEYMAP = {
 }
 
 _FORMATTED_SYMBOL_MAP = {
-    ".": "{.}",
-    "...": "{^}...",
-    "…": "{^}…",
-    ",": "{,}",
-    "!": "{!}",
-    "?": "{?}",
-    ":": "{:}",
-    ";": "{;}",
-    "%": "{^}%",
-    "(": "{~|(^}",
-    "[": "{~|[^}",
-    "{": r"{~|\{^}",
-    ")": "{^~|)}",
-    "]": "{^~|]}",
-    "}": r"{^~|\}}",
-    "\"": "{~|\"^}",
-    "'": "{~|'^}",
-    ". \"": "{^}. \"{^}{-|}",
-    ", \"": "{^}, \"{^}",
-    ".\"": "{^}.\"{-|}",
-    "\".": "{^}\"{.}",
-    ",\"": "{^~|,\"}",
-    "\",": "{^}\"{,}",
-    ").": "{^}){.}",
-    ".)": "{^}.){-|}",
-    "),": "{^}){,}",
-    ". (": "{^}. ({^}{-|}",
+    ".": "{{^}}{}{{-|}}",
+    "...": "{{^}}{}",
+    "…": "{{^}}{}",
+    ",": "{{^}}{}",
+    "!": "{{^}}{}{{-|}}",
+    "?": "{{^}}{}{{-|}}",
+    ":": "{{^}}{}",
+    ";": "{{^}}{}",
+    "%": "{{^}}{}",
+    "&": "{}",
+    "(": "{{~|{}^}}",
+    "[": "{{~|{}^}}",
+    "{": "{{~|{}^}}",
+    ")": "{{^~|{}}}",
+    "]": "{{^~|{}}}",
+    "}": "{{^~|{}}}",
+    "\"": "{{~|{}^}}",
+    "'": "{{~|{}^}}",
+    ". \"": "{{^}}{}{{^}}{{-|}}",
+    ", \"": "{{^}}{}{{^}}",
+    ".\"": "{{}}{}{{-|}}",
+    "\".": "{{}}{}{{-|}}",
+    ",\"": "{{^~|{}}}",
+    "\",": "{{^}}{}",
+    ").": "{{^}}{}",
+    ".)": "{{^}}{}{{-|}}",
+    "),": "{{^}}{}",
+    ". (": "{{^}}{}{{^}}{{-|}}",
 }
 _ASTERISK_FORMATTED_SYMBOL_MAP = {
-    ".": "{^}.",
-    "...": "{^}... {-|}",
-    "…": "{^}… {-|}",
-    "!": "{^}!",
-    "?": "{^}?",
-    "\"": "{^~|\"}",
-    "'": "{^~|'}",
+    ".": "{{^}}{}",
+    "...": "{{^}}{}{{-|}}",
+    "…": "{{^}}{}{{-|}}",
+    "!": "{{^}}{}",
+    "?": "{{^}}{}",
+    "\"": "{{^~|{}}}",
+    "'": "{{^~|{}}}",
 }
 
 _KEYMAP = {
@@ -166,10 +167,9 @@ _KEYMAP = {
 
 _IDENTIFIER_SUBSTROKE = Stroke.from_steno("_")
 
-_FORMATTED_SUBSTROKE = Stroke.from_steno("O")
-
+_ATTACH_BOTH_SUBSTROKE = Stroke.from_steno("EU")
+_FORMATTED_SUBSTROKE = Stroke.from_steno("U")
 _SPACING_BEFORE_SUBSTROKE = Stroke.from_steno("E")
-_SPACING_AFTER_SUBSTROKE = Stroke.from_steno("U")
 
 _DOUBLE_SUBSTROKE = Stroke.from_steno("+")
 _TRIPLE_SUBSTROKE = Stroke.from_steno("^")
@@ -192,6 +192,10 @@ def lookup(key: tuple[str, ...]) -> str:
     use_formatted = False
     use_asterisk_formatted = False
 
+    if _ATTACH_BOTH_SUBSTROKE in stroke:
+        translation = "{{^}} " + translation + "{{^}}"
+        stroke -= _ATTACH_BOTH_SUBSTROKE
+
     if _FORMATTED_SUBSTROKE in stroke:
         use_formatted = True
         stroke -= _FORMATTED_SUBSTROKE
@@ -201,12 +205,6 @@ def lookup(key: tuple[str, ...]) -> str:
         stroke -= _SPACING_BEFORE_SUBSTROKE
     else:
         translation = "{{^}} " + translation
-
-    if _SPACING_AFTER_SUBSTROKE in stroke:
-        translation += " {{^ ^}}"
-        stroke -= _SPACING_AFTER_SUBSTROKE
-    else:
-        translation += " {{^}}"
 
     if _DOUBLE_SUBSTROKE in stroke:
         n_repetitions += 1
@@ -226,14 +224,13 @@ def lookup(key: tuple[str, ...]) -> str:
     if keys not in _KEYMAP:
         raise KeyError
     symbol = _KEYMAP[keys]
+    
 
     if use_asterisk_formatted and symbol in _ASTERISK_FORMATTED_SYMBOL_MAP:
-        translation = "{}"
-        symbol = _ASTERISK_FORMATTED_SYMBOL_MAP[symbol]
+        translation = _ASTERISK_FORMATTED_SYMBOL_MAP[symbol]
 
     elif use_formatted and symbol in _FORMATTED_SYMBOL_MAP:
-        translation = "{}"
-        symbol = _FORMATTED_SYMBOL_MAP[symbol]
+        translation = _FORMATTED_SYMBOL_MAP[symbol]
 
     translation = translation.format(symbol * n_repetitions)
     
