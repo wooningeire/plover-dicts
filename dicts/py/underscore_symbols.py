@@ -167,7 +167,7 @@ _KEYMAP = {
 
 _IDENTIFIER_SUBSTROKE = Stroke.from_steno("_")
 
-_ATTACH_BOTH_SUBSTROKE = Stroke.from_steno("EU")
+_SPACING_BOTH_SUBSTROKE = Stroke.from_steno("EU")
 _FORMATTED_SUBSTROKE = Stroke.from_steno("U")
 _SPACING_BEFORE_SUBSTROKE = Stroke.from_steno("E")
 
@@ -192,19 +192,20 @@ def lookup(key: tuple[str, ...]) -> str:
     use_formatted = False
     use_asterisk_formatted = False
 
-    if _ATTACH_BOTH_SUBSTROKE in stroke:
-        translation = "{{^}} " + translation + "{{^}}"
-        stroke -= _ATTACH_BOTH_SUBSTROKE
+    if _SPACING_BOTH_SUBSTROKE in stroke:
+        translation = "{{^ ^}} " + translation + " {{^ ^}}"
+        stroke -= _SPACING_BOTH_SUBSTROKE
 
-    if _FORMATTED_SUBSTROKE in stroke:
+    elif _SPACING_BEFORE_SUBSTROKE in stroke:
+        translation = "{{^ ^}} " + translation + " {{^}}"
+        stroke -= _SPACING_BEFORE_SUBSTROKE
+
+    elif _FORMATTED_SUBSTROKE in stroke:
         use_formatted = True
         stroke -= _FORMATTED_SUBSTROKE
 
-    if _SPACING_BEFORE_SUBSTROKE in stroke:
-        translation = "{{^ ^}} " + translation
-        stroke -= _SPACING_BEFORE_SUBSTROKE
     else:
-        translation = "{{^}} " + translation
+        translation = "{{^}} " + translation + " {{^}}"
 
     if _DOUBLE_SUBSTROKE in stroke:
         n_repetitions += 1
