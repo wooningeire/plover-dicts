@@ -277,6 +277,7 @@
 "TPHOEPL/KWRAL": "nomial",
 "TPHOPL/KWRAL": "nomial",
 "TPH*FRS": "inverse",
+"TPH*T": "nth",
 "TPHULT": "nullity",
 "TPRAOEFRBL": "free variable",
 "TPRAOEFP": "for each",

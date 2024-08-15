@@ -1,9 +1,9 @@
 {
+"_TP-PB": "fn",
+"_PHUT": "mut",
+"_PREUPBLT": "println!({^}",
+"_EUFRPL": "impl",
 "S-TD": "std",
-"TPHU/TAO*EUP": "newtype",
-"TWHRAOUS/PA*PBLG": "\\usepackage[{^}",
-"KAORG": "cargo",
-"PH*UT": "mut",
-"PREUPBLT": "println!({^}",
-"EUFRPL": "impl"
+"TP-S": "fs",
+"KAORG": "cargo"
 }

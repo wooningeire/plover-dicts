@@ -20,7 +20,7 @@ See setup instructions in `SETUP.md`.
 * Sierpinski `#S*ER/PEUPB/SKPWEU` <!-- * Kubernetes `#KPWU/PWER/TPHEFRTS` -->
 * dopaminergic `TKO/PAPLGD/TPHER/TKPWEUPG`
 * dactylopatagium `TKAPG/T*EULGDZ/PA/TA/TKPW*UPL`
-* rhombicosidodecahedron `TPWROPL/PWEU/KOS/EU/TKOFRD/KAFRTD/TKROPB`
+* rhombicosidodecahedron `TPWROPL/PWEU/KOS/EU/TKOFRD/KAFRLGTD/TKROPB`
 * Pafnuty Lvovich Chebyshev `#PAF/TPHUFPBT/S-P/#HR/SRO/SREUFP/S-P/#KHEBTSDZ/SHEFB`
     * (extended stenotype: `#PAF/TPHUFPBT/#^HR/SRO/SREUFP/#^KHEBTSDZ/SHEFB`)
 
@@ -32,14 +32,12 @@ Exit is handled by a special entry which translates to `{plover:end_solo_dict}`.
 ### Left bank
 
 #### Left bank letters
-Roughly a superset of fingerspelling. All vowels and left-hand consonants can be individually chorded the same as with fingerspelling, with two exceptions:
-* `K`: c
-* `KPW`: k
+A superset of fingerspelling. All vowels and left-hand consonants can be individually chorded the same as with fingerspelling.
 
 The `*` key does not need to be pressed for each stroke.
 
 #### `WHR-` as `hr`
-By default, `...HR-` will translate to `...l`, so `SHR`, `THR`, `KHR` will produce `sl`, `tl`, `cl`. Use `WHR` to split `l` into `hr`; e.g. `throttle` could be stroked `TWHROT/THRE`.
+By default, `...HR-` will translate to `...l`, so `SHR`, `THR`, `KHR` will produce `sl`, `tl`, `kl`. Use `WHR` to split `l` into `hr`; e.g. `throttle` could be stroked `TWHROT/THRE`.
 * `SWHR`: shr
 * `TWHR`: thr
 * `KWHR`: chr
@@ -48,7 +46,7 @@ By default, `...HR-` will translate to `...l`, so `SHR`, `THR`, `KHR` will produ
 Other various chords have been introduced:
 * `STPHR`: ' *(apostrophe)*
 * `SKP`: ss
-* `SKPW`: sk
+* `SKPW`: sc
 * `SWR`: sr
 * `TKPH`: kn
 * `TPWH`: ph
@@ -116,7 +114,7 @@ These clusters have been changed:
 #### `-SZ` as doubler
 `-SZ` is sometimes used to double an ending consonant.
 * `-FSZ`: ff
-* `-FRSZ`: hh
+* `-FRLGSZ`: hh
 * `-PBSZ`: nn
 * `-LSZ`: ll
 * `-SZ`: ss
@@ -155,7 +153,7 @@ The remaining ending vowels are assigned to chords that contain `-G`. From there
 
 ##### Inverted ending vowels
 Some chords in columns 1/2 can be used to add vowels after chords that use columns 4/5.
-* `-FR`: e (normally h)
+* `-FR`: e (normally rf)
 * `-FPB`: y (normally sh)
 
 These are simply added to the stroke, e.g.,

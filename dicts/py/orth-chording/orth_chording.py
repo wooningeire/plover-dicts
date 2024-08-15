@@ -26,13 +26,14 @@ _CHORDS_WITH_NO_MODIFIERS = {
 
     "S": "s",
     "T": "t",
-    "K": "c",
+    "K": "k",
     "P": "p",
     "W": "w",
     "H": "h",
     "R": "r",
 
     "STKPW": "z",
+    "STK": "z",
     "SKWR": "j",
     "SR": "v",
     "TK": "d",
@@ -40,7 +41,7 @@ _CHORDS_WITH_NO_MODIFIERS = {
     "TP": "f",
     "TPH": "n",
     "KP": "x",
-    "KPW": "k",
+    "KPW": "c",
     "KW": "q",
     "KWR": "y",
     "PW": "b",
@@ -51,17 +52,16 @@ _CHORDS_WITH_NO_MODIFIERS = {
     "TWHR": "thr",
     "KWHR": "chr",
 
-    "STK": "dis",
     "SKP": "ss",
-    "SKPW": "sk",
+    "SKPW": "sc",
     "SWR": "sr",
     "TKPH": "kn",
-    "TKWHR": "rh",
+    "TKWHR": "hr",
     "TPW": "phl",
     "TPWH": "ph",
     "TPWR": "rh",
     "KWH": "qu",
-    "WHR": "hr",
+    "WHR": "rh",
 
     "TPHR": "fl",
     "PHR": "pl",
@@ -146,7 +146,7 @@ _CHORDS_WITH_NO_MODIFIERS = {
     "-DZ": "ds",
 
     "-FSZ": "ff",
-    "-FRSZ": "hh",
+    "-FRLGSZ": "hh",
     "-PBSZ": "nn",
     "-LSZ": "ll",
     "-SZ": "ss",
@@ -288,6 +288,7 @@ elif "^-" in KEYS and "_" in KEYS and "&-" in KEYS:
     _CHORDS.update({
         # MODIFIERS
 
+        "^": ("", (Modifier.CONNECT_BEFORE,)),
         "_": ("", (Modifier.WORD_BOUNDARY,)),
         "&": ("", (Modifier.EXIT,)),
 
