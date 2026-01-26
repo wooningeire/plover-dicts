@@ -1,4 +1,5 @@
 {
+"#@OS": "OS",
 "#STPHO*R": "XNOR",
 "#STPAER": "Safari",
 "#STPOED": "VSCode",
@@ -77,6 +78,7 @@
 "#OR": "OR",
 "#EBG/PHA/SKREUPT": "ECMAScript",
 "STRUBGT": "struct",
+"ST-D": "std",
 "SKWR-FPB": "json",
 "SPWHR*EUPBG": "symbolic link",
 "SHRO*EUPBG": "static linking",
@@ -90,7 +92,9 @@
 "TRAO*E": "trie",
 "TROEUR": "type error",
 "KPW-D": "cd",
+"KHR-S": "cls",
 "PW*UF": "buf",
+"PHA/HROBG": "malloc",
 "PHOE/SKWREU/^PWAEUBG": "mojibake",
 "PHOEPBLG/^PWAEUBG": "mojibake",
 "HRO*EUPBG": "linking",

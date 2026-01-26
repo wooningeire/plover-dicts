@@ -5,6 +5,7 @@
 "#P*ERBGD": "{^}/{#h 3 return}{^}",
 "#PERBGTD": "{^}/h{#3 down return}{^}{-|}",
 "#PERBGD": "{^}/{#h 3 return}{^}{-|}",
+"_TPHOEPL": "{^}1. {^}",
 "STH*PB": "{^}1{#period space}{^}{-|}",
 "STH-PB": "{^}1{#period space}{~|^}",
 "SH*PB": "{^}-{#space}{^}{-|}",

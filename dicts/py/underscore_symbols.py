@@ -90,6 +90,7 @@ _MAIN_SYMBOL_KEYMAP = {
 
     "K-T": "(\"",
     "-GT": "\")",
+    "PR-RB": "\\_",
     #endregion
 
 
@@ -171,7 +172,7 @@ _SPACING_BOTH_SUBSTROKE = Stroke.from_steno("EU")
 _FORMATTED_SUBSTROKE = Stroke.from_steno("U")
 _SPACING_BEFORE_SUBSTROKE = Stroke.from_steno("E")
 
-_DOUBLE_SUBSTROKE = Stroke.from_steno("+")
+_DOUBLE_SUBSTROKE = Stroke.from_steno("@")
 _TRIPLE_SUBSTROKE = Stroke.from_steno("^")
 
 _ASTERISK_SUBSTROKE = Stroke.from_steno("*")

@@ -272,7 +272,7 @@ _SPECIAL_ENTRIES = {
 # Change control chords and special entries depending on whether an extended stenotype system is being used
 
 # For regular extended stenotype
-if "^-" in KEYS and "_" not in KEYS and "&-" not in KEYS:
+if ("^-" in KEYS or "^" in KEYS) and "_" not in KEYS and "&" not in KEYS:
     _CHORDS.update({
         # MODIFIERS
 
@@ -284,7 +284,7 @@ if "^-" in KEYS and "_" not in KEYS and "&-" not in KEYS:
     })
 
 # For custom extended stenotype
-elif "^-" in KEYS and "_" in KEYS and "&-" in KEYS:
+elif "^" in KEYS and "_" in KEYS and "&" in KEYS:
     _CHORDS.update({
         # MODIFIERS
 

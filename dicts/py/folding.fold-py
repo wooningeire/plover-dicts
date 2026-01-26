@@ -3,14 +3,20 @@ import plover_custom_folding as f
 rules = [
     f.when(f.all_strokes.fold("^")).then(f.prefix_translation("{^~|^}"))
         .unless_also(
-            f.when(f.first_stroke.folds("_")).then(f.prefix_translation("{^~|-^}")),
+            f.when(f.first_stroke.folds("_")).then(f.prefix_translation("{^~|-^}"))
+                .preferring_folds(),
             f.when(f.all_strokes.fold("+")).then(f.suffix_translation("{^}"))
                 .unless_also(
                     f.when(f.last_stroke.folds("_")).then(f.suffix_translation("-{^}")),
                 ),
         ),
 
-    f.when(f.first_stroke.folds("#")).then(f.prefix_translation("{-|}")),
+    f.when(f.first_stroke.folds("#")).then(f.prefix_translation("{-|}"))
+        .unless_also(
+            f.when(f.first_stroke.folds("@")).then(f.prefix_translation("{<}"))
+                .preferring_folds(),
+        )
+        .preferring_folds(),
     
     f.when(f.last_stroke.folds("+")).then(
         f.suffix_outline("/SWHEU"),
